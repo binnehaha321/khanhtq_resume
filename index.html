@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khanh Truong Resume</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-between align-items-center py-3">
+            <ul class="d-flex gap-5 align-items-center">
+                <a href="#activities">
+                    <li>Activities</li>
+                </a>
+                <a href="#portfolio">
+                    <li>Portfolio</li>
+                </a>
+                <a href="#certificate">
+                    <li>Certificate</li>
+                </a>
+            </ul>
+            <div class="letter-name"><span>K</span></div>
+            <div class="contact-btn"><button class="btn btn-secondary border-radius-lg">Contact Me</button></div>
+        </header>
+        <!-- HOME -->
+        <section class="hero mt-5 d-flex">
+            <div class="left col-12 col-md-6 d-flex flex-column justify-content-between">
+                <div class="top">
+                    <h2>My name is <br /> <b>Truong Quoc Khanh</b></h2>
+                    <p>I am a Frontend developer with beloving composing music. &#10084;</p>
+                    <button class="btn btn-primary border-radius-lg text-light my-3">Hire Me</button>
+                </div>
+                <div class="bottom">
+                    <section class="skills">
+                        <ul class="language mt-3">
+                            <li>html</li>
+                            <li>css</li>
+                            <li>javascript</li>
+                            <li>reactjs</li>
+                        </ul>
+                        <ul class="library mt-3">
+                            <li>bootstrap</li>
+                            <li>tailwindcss</li>
+                            <li>ant design</li>
+                        </ul>
+                        <ul class="control mt-3">
+                            <li>github</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <div class="right col-12 col-md-6">
+                <div class="avatar">
+                    <img src="./images/ava.png" alt="avatar">
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVITIES -->
+        <section id="activities" class="my-5 py-3">
+            <div class="activity d-flex justify-content-between py-3">
+                <div class="image col-12 col-md-6 position-relative">
+                    <img src="./images/net-company.jpg" alt="net-company">
+                </div>
+                <div class="content col-12 col-md-5">
+                    <h2 class="text-center text-primary fw-bold text-uppercase">Activities</h2>
+                    <blockquote class="text-center fw-semibold"><i>"Netcompany Case Study"</i></blockquote>
+
+                    <div class="description d-flex flex-column">
+                        <p class="desc desc_netcompany">On the company visit on April 2021 at Netcompany, we received a
+                            case study of Hamber company
+                            which was facing losing
+                            customers year to year. We had an hour to group work to find solutions for this. My teams
+                            had been efforts to brainstorm
+                            and come up with many ideas such as improving UI, enhancing the search tool's effectiveness,
+                            analyzing users' behavior,
+                            integrating AI tech, etc.
+                            I started my presentation at 07:15 time point, you can move to it to see my solution. I was
+                            in charge of analyzing
+                            charts and modelizing.
+                            This is one of the most fantastic realistic experiences.</p>
+                        <button class="btn btn-primary text-light align-self-end border-radius-lg"
+                            id="activity_netcompany">Solution</button>
+                        <div class="overlay" id="video_netcompany">
+                            <iframe src="https://www.youtube.com/embed/gh3OQYfbg18?start=435"
+                                title="Netcompany Case Study" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                            <button id="close-netcompany"
+                                class="btn btn-danger d-flex align-items-center justify-content-center">&times;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="activity d-flex justify-content-between py-3">
+                <div class="content col-12 col-md-5">
+                    <!-- <blockquote class="text-center"><i>"The more you grow, the more you know <br /> The more you learn, the more you earn."</i></blockquote> -->
+                    <blockquote class="text-center fw-semibold"><i>"Greenwich Experience on HTV7"</i></blockquote>
+
+                    <div class="description d-flex flex-column">
+                        <p class="desc desc_greenwich">I was honored to be invited to make a newspaper report about my
+                            university. I have earned
+                            lots of experience and skills
+                            through overseas trips, outside activities, and presentation days. Moreover, the thing that
+                            wasn't lacking was my
+                            confidence, I felt it strongly improved day to day.</p>
+                        <button class="btn btn-primary text-light align-self-end border-radius-lg"
+                            id="activity_greenwich">Watch it!</button>
+                        <div class="overlay" id="video_greenwich">
+                            <iframe src="https://www.youtube.com/embed/G5exkkhBXGU?start=159"
+                                title="Greenwich Experience on HTV7" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                            <button id="close-greenwich"
+                                class="btn btn-danger d-flex align-items-center justify-content-center">&times;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="image col-12 col-md-6 position-relative">
+                    <img src="./images/greenwich.jpg" alt="greenwich">
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+<script type="module" src="./script/main.js"></script>
+
+</html>

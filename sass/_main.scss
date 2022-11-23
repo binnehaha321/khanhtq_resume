@@ -1,0 +1,11 @@
+// Custom theme
+$primary: #FE5B02;
+$info: #241F21;
+$secondary: #E1E1E1;
+$transition: all .25s linear;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.border-radius-lg {
+    border-radius: 30px!important;
+}
