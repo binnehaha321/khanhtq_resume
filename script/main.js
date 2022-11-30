@@ -1,6 +1,14 @@
-import handleDisplayVideo from "./handleDisplayVideo.js";
+import DISPLAYMEDIA from "./handleDisplayVideo.js";
+import PREVENTDEFAULT from "./preventDefault.js";
+import SLIDERS from "./sliders.js";
 import TRUNCATE from "./truncate.js";
-$(document).ready(function () {
-  handleDisplayVideo();
+
+window.onload = () => {
+  PREVENTDEFAULT();
+
+  DISPLAYMEDIA();
+
   TRUNCATE();
-});
+
+  SLIDERS();
+};

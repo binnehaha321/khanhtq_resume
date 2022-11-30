@@ -12,24 +12,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body>
+    <!-- SOCIAL -->
+    <ul id="social" class="d-flex justify-content-between mx-auto p-3">
+        <li><a target="_blank" href="https://www.linkedin.com/in/tqk/"><img src="./images/social/linkedln.svg"
+                    alt="linkedln" width="40" height="40"></a></li>
+        <li><a target="_blank" href="https://github.com/binnehaha321"><img src="./images/social/github.svg" alt="github"
+                    width="40" height="40"></a></li>
+        <li><a target="_blank" href="mailto:workhanh79@gmail.com"><img src="./images/social/gmail.svg" alt="gmail"
+                    width="40" height="40"></a></li>
+        <li><a target="_blank" href="https://www.youtube.com/@khanhtq79"><img src="./images/social/youtube.svg"
+                    alt="youtube" width="40" height="40"></a></li>
+    </ul>
+    <!-- HEADER -->
     <div class="container">
         <header class="d-flex justify-content-between align-items-center py-3">
-            <ul class="d-flex gap-5 align-items-center">
+            <ul class="d-flex align-items-center justify-content-between">
+                <a href="#">
+                    <li>Home</li>
+                </a>
                 <a href="#activities">
                     <li>Activities</li>
-                </a>
-                <a href="#portfolio">
-                    <li>Portfolio</li>
                 </a>
                 <a href="#certificate">
                     <li>Certificate</li>
                 </a>
+                <a href="#eduexp">
+                    <li>Edu & Exp</li>
+                </a>
             </ul>
             <div class="letter-name"><span>K</span></div>
-            <div class="contact-btn"><button class="btn btn-secondary border-radius-lg">Contact Me</button></div>
+            <div class="contact-btn"><a id="resume" target="_blank"
+                    href="https://drive.google.com/drive/folders/1-8nvCmd4rz3A7iC9l5VI25UN1PoYT9Y_?usp=share_link"
+                    class="btn btn-secondary border-radius-lg">My Resume</a></div>
         </header>
         <!-- HOME -->
         <section class="hero mt-5 d-flex">
@@ -60,80 +81,159 @@
             </div>
             <div class="right col-12 col-md-6">
                 <div class="avatar">
-                    <img src="./images/ava.png" alt="avatar">
+                    <img loading="lazy" src="./images/ava.png" alt="avatar">
                 </div>
             </div>
         </section>
 
         <!-- ACTIVITIES -->
-        <section id="activities" class="my-5 py-3">
-            <div class="activity d-flex justify-content-between py-3">
-                <div class="image col-12 col-md-6 position-relative">
-                    <img src="./images/net-company.jpg" alt="net-company">
-                </div>
-                <div class="content col-12 col-md-5">
-                    <h2 class="text-center text-primary fw-bold text-uppercase">Activities</h2>
-                    <blockquote class="text-center fw-semibold"><i>"Netcompany Case Study"</i></blockquote>
-
-                    <div class="description d-flex flex-column">
-                        <p class="desc desc_netcompany">On the company visit on April 2021 at Netcompany, we received a
-                            case study of Hamber company
-                            which was facing losing
-                            customers year to year. We had an hour to group work to find solutions for this. My teams
-                            had been efforts to brainstorm
-                            and come up with many ideas such as improving UI, enhancing the search tool's effectiveness,
-                            analyzing users' behavior,
-                            integrating AI tech, etc.
-                            I started my presentation at 07:15 time point, you can move to it to see my solution. I was
-                            in charge of analyzing
-                            charts and modelizing.
-                            This is one of the most fantastic realistic experiences.</p>
-                        <button class="btn btn-primary text-light align-self-end border-radius-lg"
-                            id="activity_netcompany">Solution</button>
-                        <div class="overlay" id="video_netcompany">
-                            <iframe src="https://www.youtube.com/embed/gh3OQYfbg18?start=435"
-                                title="Netcompany Case Study" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                            <button id="close-netcompany"
-                                class="btn btn-danger d-flex align-items-center justify-content-center">&times;</button>
-                        </div>
-                    </div>
-                </div>
+        <section id="activities" class="d-grid">
+            <h2 class="mt-5 text-primary fw-bold text-end">ACTIVITIES</h2>
+            <div class="image img_netcompany" data-aos="fade-right"><img loading="lazy"
+                    src="./images/activities/net-company.jpg" width="100%" height="100%" alt="">
             </div>
-            <div class="activity d-flex justify-content-between py-3">
-                <div class="content col-12 col-md-5">
-                    <!-- <blockquote class="text-center"><i>"The more you grow, the more you know <br /> The more you learn, the more you earn."</i></blockquote> -->
-                    <blockquote class="text-center fw-semibold"><i>"Greenwich Experience on HTV7"</i></blockquote>
-
-                    <div class="description d-flex flex-column">
-                        <p class="desc desc_greenwich">I was honored to be invited to make a newspaper report about my
-                            university. I have earned
-                            lots of experience and skills
-                            through overseas trips, outside activities, and presentation days. Moreover, the thing that
-                            wasn't lacking was my
-                            confidence, I felt it strongly improved day to day.</p>
-                        <button class="btn btn-primary text-light align-self-end border-radius-lg"
-                            id="activity_greenwich">Watch it!</button>
-                        <div class="overlay" id="video_greenwich">
-                            <iframe src="https://www.youtube.com/embed/G5exkkhBXGU?start=159"
-                                title="Greenwich Experience on HTV7" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                            <button id="close-greenwich"
-                                class="btn btn-danger d-flex align-items-center justify-content-center">&times;</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="image col-12 col-md-6 position-relative">
-                    <img src="./images/greenwich.jpg" alt="greenwich">
-                </div>
+            <div class="desc">
+                <blockquote class="text-center fw-semibold"><i>"Netcompany Case Study"</i></blockquote>
+                <p class="desc-net">On the company visit on April 2021 at Netcompany, we received a
+                    case study of Hamber company
+                    which was facing losing
+                    customers year to year. We had an hour to group work to find solutions for this. My teams
+                    had been efforts to brainstorm
+                    and come up with many ideas such as improving UI, enhancing the search tool's effectiveness,
+                    analyzing users' behavior,
+                    integrating AI tech, etc.
+                    I started my presentation at 07:15 time point, you can move to it to see my solution. I was
+                    in charge of analyzing
+                    charts and modelizing.
+                    This is one of the most fantastic realistic experiences.</p>
+                <button class="btn btn-primary d-block ms-auto border-radius-lg text-light">Solution</button>
+            </div>
+            <div class="image img_greenwich" data-aos="fade-left"><img loading="lazy"
+                    src="./images/activities/greenwich.jpg" width="100%" height="100%" alt=""></div>
+            <div class="desc">
+                <blockquote class="text-center fw-semibold"><i>"Greenwich Experience on HTV7"</i></blockquote>
+                <p class="desc-gw">I was honored to be invited to make a newspaper report about my
+                    university. I have earned
+                    lots of experience and skills
+                    through overseas trips, outside activities, and presentation days. Moreover, the thing that
+                    wasn't lacking was my
+                    confidence, I felt it strongly improved day to day.</p>
+                <button class="btn btn-primary d-block ms-auto border-radius-lg text-light">Watch it!</button>
+            </div>
+            <div class="image img_kao" data-aos="fade-up"><img loading="lazy" src="./images/activities/kao.jpg"
+                    width="100%" height="100%" alt=""></div>
+            <div class="desc">
+                <blockquote class="text-center fw-semibold"><i>"KAO Entertainment"</i></blockquote>
+                <p class="desc-kao">I played the role of music director at KAO Entertainment. KAO
+                    Entertainment is a start-up of my friend, he is talented
+                    and energetic. We had together a mini music show that raise funds for charity on Christmas
+                    eve 2021.</p>
+                <button class="btn btn-primary d-block ms-auto border-radius-lg text-light">Our journey</button>
             </div>
         </section>
     </div>
+
+    <!-- CERTIFICATE -->
+    <section id="certificate" class="bg-info p-3 my-5">
+        <div class="container">
+            <h2 class="text-primary fw-bold py-3">CERTIFICATE</h2>
+            <div class="wrapper">
+                <ul class="certificates px-3"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDU & EXP -->
+    <div class="container">
+        <section id="eduexp" class="pt-3">
+            <h2 class="text-primary fw-bold text-center">Edu & Exp</h2>
+            <ul>
+                <li>
+                    <img src="./images/experience/greenwich.png" width="300" height="300" alt="greenwich"
+                        loading="lazy">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <th>Title</th>
+                            <td>Student</td>
+                        </tr>
+                        <tr>
+                            <th>Duration</th>
+                            <td>Sep 2019 - Present</td>
+                        </tr>
+                        <tr>
+                            <th>Website</th>
+                            <td><a href="https://greenwich.edu.vn/en/english"
+                                    target="_blank">https://greenwich.edu.vn/en/english
+                                </a></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <img src="./images/experience/splus.png" width="300" height="300" alt="splus" loading="lazy">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <th>Title</th>
+                            <td>Frontend Developer</td>
+                        </tr>
+                        <tr>
+                            <th>Duration</th>
+                            <td>Nov 2021 - May 2022</td>
+                        </tr>
+                        <tr>
+                            <th>Website</th>
+                            <td><a href="https://splus-software.com.vn" target="_blank">https://splus-software.com.vn
+                                </a></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <img src="./images/experience/btec.png" width="300" height="300" alt="btec" loading="lazy">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <th>Title</th>
+                            <td>Lecturer</td>
+                        </tr>
+                        <tr>
+                            <th>Duration</th>
+                            <td>Sep 2022 - Present</td>
+                        </tr>
+                        <tr>
+                            <th>Website</th>
+                            <td><a href="https://btec.fpt.edu.vn" target="_blank">https://btec.fpt.edu.vn</a></td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="mt-3 py-3 bg-secondary text-bg-light">
+        <ul class="d-flex justify-content-between align-items-center px-4">
+            <li>
+                <p class="text-center text-info">©2023 TRUONG QUOC KHANH</p>
+            </li>
+            <li>
+                <blockquote class="text-center"><i>"The more you grow, the more you know <br /> The more you learn, the
+                        more
+                        you earn."</i></blockquote>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- MEDIA -->
+    <div id="media">
+        <iframe title="" src="" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <img src="" alt="">
+        <figcaption class="text-center text-primary fw-semibold mt-3"></figcaption>
+        <button class="position-fixed btn btn-danger text-light">×</button>
+    </div>
 </body>
 <script type="module" src="./script/main.js"></script>
+<script>
+    AOS.init();
+</script>
 
 </html>

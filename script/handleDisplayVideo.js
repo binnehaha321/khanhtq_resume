@@ -1,34 +1,77 @@
-const handleDisplayVideo = () => {
-  const showVideo = (video) => {
-    video.style.cssText = `
-          visibility: visible;
-          opacity: 1;
+const DISPLAYMEDIA = () => {
+  const medias = [
+    {
+      title: "Netcompany Case Study",
+      src: "https://www.youtube.com/embed/gh3OQYfbg18?start=439",
+      type: "video",
+    },
+    {
+      title: "Greenwich Experience On HTV7",
+      src: "https://www.youtube.com/embed/G5exkkhBXGU?start=159",
+      type: "video",
+    },
+    {
+      title: "KAO Entertainment",
+      src: "../images/kao-show.jpg",
+      type: "image",
+    },
+  ];
+
+  const media = document.querySelector("#media");
+  const iframe = document.querySelector("#media iframe");
+  const img = document.querySelector("#media img");
+  const caption = document.querySelector("#media figcaption");
+
+  const showMedia = (src, title, type) => {
+    media.classList.add("active");
+    if (type === "video") {
+      iframe.src = src;
+      iframe.style.cssText = `
+        width: 80vw;
+        height: 90vh;
+        visibility: visible;
       `;
-    $("body")[0].style.overflowY = "hidden";
+    } else {
+      img.src = src;
+      img.style.cssText = `
+        width: 80vw;
+        height: 90vh;
+        object-fit: cover;
+      `;
+    }
+    caption.innerText = `Media: ${title}`;
+    document.body.append(media);
+    document.body.style.overflowY = "hidden";
   };
 
-  const hideVideo = (video) => {
-    video.style.cssText = `
-            visibility: inital;
-            opacity: inital;
-        `;
-    $("body")[0].style.overflowY = "unset";
+  const closeMedia = () => {
+    document.body.style.overflowY = "scroll";
+    media.classList.remove("active");
+    iframe.src = "";
+    iframe.style.cssText = `
+        width: 0;
+        height: 0;
+    `;
+    img.src = "";
+    img.style.cssText = `
+        width: 0;
+        height: 0;
+    `;
+    document.body.removeChild(media);
+    document.body.removeChild(img);
   };
 
-  // Show video in "Activities" section
-  $("#activity_netcompany").on("click", () => {
-    showVideo($("#video_netcompany")[0]);
-  });
-  $("#activity_greenwich").on("click", () => {
-    showVideo($("#video_greenwich")[0]);
+  // show media
+  const showMediaButtons = [...document.querySelectorAll(".desc > button")];
+  showMediaButtons.map((btn, i) => {
+    btn.onclick = () => {
+      showMedia(medias[i].src, medias[i].title, medias[i].type);
+    };
   });
 
-  $("#close-netcompany").on("click", () => {
-    hideVideo($("#video_netcompany")[0]);
-  });
-  $("#close-greenwich").on("click", () => {
-    hideVideo($("#video_greenwich")[0]);
-  });
+  // close media
+  document.querySelector("#media button").onclick = () => {
+    closeMedia();
+  };
 };
-
-export default handleDisplayVideo;
+export default DISPLAYMEDIA;
