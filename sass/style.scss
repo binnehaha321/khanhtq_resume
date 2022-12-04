@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 @import "./main.scss";
+@import "./responsive.scss";
 
 * {
   margin: 0;
@@ -46,23 +47,148 @@ ul {
   padding: 0;
 }
 
+textarea {
+  resize: none;
+}
+
 @mixin heading2 {
   font-size: 3rem;
   letter-spacing: 5px;
 }
 
-// Project
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  transition: $transition;
+  background-color: rgba($color: $dark, $alpha: 0.9);
+  overflow-y: hidden;
+  @include modalDeactive();
+  @include flexCenter();
+}
+
+@mixin modalDeactive {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin modalActive {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*-------- PROJECT --------*/
+// Sidebar
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 70%;
+  z-index: 999;
+  transition: $transition;
+  background-color: $light;
+  box-shadow: 5px 5px 10px #ccc;
+  display: flex;
+  flex-direction: column;
+  @include modalDeactive();
+
+  &.showSidebar {
+    left: 0 !important;
+    @include modalActive();
+  }
+
+  .head {
+    @include flexBetween();
+
+    p {
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      color: $info;
+      letter-spacing: 5px;
+      margin-bottom: 0;
+
+      span {
+        background-color: $info;
+        @include flexCenter();
+        width: 60px;
+        height: 60px;
+        border-radius: 100rem;
+        color: $light;
+        letter-spacing: 0;
+      }
+    }
+
+    .close {
+      width: fit-content;
+    }
+  }
+
+  .body {
+    padding-block: 2rem;
+    margin-bottom: auto;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      li {
+        a {
+          color: $info;
+          font-size: 1.5rem;
+
+          i {
+            width: 30px;
+            text-align: center;
+            margin-right: 0.5rem;
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    ul {
+      display: flex;
+      position: static;
+      width: initial;
+      transform: unset;
+      background-color: initial;
+    }
+  }
+}
+
+// Social
 #social {
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 999;
+  z-index: 1;
   width: 325px;
   max-width: 325px;
   background-color: $secondary;
   border-color: $secondary;
   border-radius: 1rem;
+  @include flexBetween();
+
+  @include xlTablet() {
+    display: none;
+  }
 
   li {
     transition: $transition;
@@ -72,23 +198,45 @@ ul {
   }
 }
 
+// Header
 header {
-  ul {
-    flex: 1;
-    a {
-      color: var(--dark);
+  @include flexBetween();
 
-      li {
-        white-space: nowrap;
+  ul {
+    @include flexBetween();
+    flex: 2;
+
+    @include xlTablet() {
+      display: none;
+    }
+
+    li {
+      white-space: nowrap;
+
+      a {
+        color: var(--dark);
+
+        i {
+          display: none !important;
+        }
       }
     }
   }
+
+  .bar {
+    flex: 2;
+    display: none;
+    font-size: 2rem;
+
+    @include xlTablet() {
+      display: block;
+    }
+  }
+
   .letter-name {
     flex: 1;
     span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flexCenter();
       width: 40px;
       height: 40px;
       border-radius: 100rem;
@@ -101,7 +249,7 @@ header {
   }
 
   .contact-btn {
-    flex: 1;
+    flex: 2;
     a {
       padding: 0.5rem 1rem;
       display: block;
@@ -110,14 +258,28 @@ header {
   }
 }
 
+// Hero
 .hero {
-  height: calc(100vh - 74px - 5rem);
+  @include mobile() {
+    gap: 2rem;
+  }
+
   .left {
     .top {
       h2 {
         font-family: "Obitron", sans-serif;
         font-size: 3.5rem;
         line-height: 1.5;
+
+        @include tv() {
+          font-size: 3rem;
+        }
+        @include xlDesktop {
+          font-size: 2.8rem;
+        }
+        @include xlTablet {
+          font-size: 2rem;
+        }
       }
     }
 
@@ -144,11 +306,11 @@ header {
             }
             &:nth-child(2) {
               background-color: $primary;
-              color: #fff;
+              color: $light;
             }
             &:nth-child(3) {
-              background-color: #000;
-              color: #fff;
+              background-color: $dark;
+              color: $light;
             }
             &:nth-child(4) {
               background-color: $secondary;
@@ -159,14 +321,11 @@ header {
     }
   }
   .right {
-    position: relative;
-    top: -230px;
-    right: -170px;
-    transform: scale(1.3) rotate(-5deg);
-    z-index: -1;
+    height: fit-content;
 
     .avatar {
       img {
+        border-radius: 5px;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -175,15 +334,103 @@ header {
   }
 }
 
+// Contact form
+#contact-form {
+  @include modal();
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgb(0 0 0 / 30%), rgb(0 0 0 / 30%)),
+      url(../images/activities/kao.jpg);
+    background-size: cover;
+    background-position: 50%;
+    width: 100%;
+    height: 100%;
+  }
+  .wrapper {
+    border-radius: 5px;
+    z-index: 4;
+    height: 100vh;
+
+    .heading {
+      width: fit-content;
+
+      h4 {
+        font-size: 2rem;
+        letter-spacing: 5px;
+      }
+    }
+  }
+
+  &.active {
+    @include modalActive();
+  }
+
+  .form-container {
+    form {
+      input,
+      textarea {
+        background-color: transparent;
+        color: $light;
+        border: 2px solid $light;
+
+        &::placeholder {
+          color: $primary;
+        }
+      }
+    }
+
+    .visit-card {
+      .information {
+        li {
+          display: grid;
+          grid-template-columns: 1fr 8fr;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1rem;
+
+          i {
+            color: $light;
+            text-align: center;
+            background-color: $primary;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            @include flexCenter();
+          }
+
+          span {
+            color: $light;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Activities
 #activities {
   grid-template-areas:
     "heading heading"
-    "netImg netDesc"
+    "netImg netText"
     "gwText gwImg"
     "kaoImg gwImg"
     "kaoImg kaoText"
     "kaoImg kaoText";
   gap: 3rem 2rem;
+
+  @include tablet() {
+    grid-template-areas:
+      "heading"
+      "netImg"
+      "netText"
+      "gwImg"
+      "gwText"
+      "kaoImg"
+      "kaoText";
+  }
 
   h2 {
     grid-area: heading;
@@ -237,30 +484,14 @@ header {
   }
 }
 
-#footer {
-  ul {
-    li {
-      &:first-child {
-        p {
-          color: $secondary;
-          margin: 0;
-        }
-      }
-
-      &:last-child {
-        blockquote {
-          color: $primary;
-          margin: 0;
-        }
-      }
-    }
-  }
-}
-
+// Certificate
 #certificate {
-  height: 100vh;
   h2 {
     @include heading2();
+
+    @include mini() {
+      font-size: 2.5rem;
+    }
   }
 
   .wrapper {
@@ -291,36 +522,76 @@ header {
     }
 
     ul {
-      display: flex;
+      @include flexBetween();
       gap: 1rem;
       position: relative;
       width: 100%;
-      height: calc(100vh - 8rem);
       overflow: hidden;
       white-space: nowrap;
       cursor: grab;
 
       li {
+        height: calc(100vh - 8rem);
+
+        @include xlTablet() {
+          width: 95vw;
+          height: auto;
+
+          &:nth-child(4) {
+            height: 90vh;
+
+            img {
+              height: 95%;
+            }
+          }
+        }
+
+        @include mobile() {
+          height: auto !important;
+        }
+
         img {
-          height: calc(100vh - 10rem);
+          height: 95%;
+          object-fit: contain;
+
+          @include xlTablet() {
+            width: 95vw;
+            height: auto;
+          }
+
+          @include mobile() {
+            height: auto !important;
+          }
         }
       }
     }
   }
 }
 
-// Experiece
+// Edu & Exp
 #eduexp {
-  height: 100vh;
   h2 {
     @include heading2();
   }
   ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
     place-items: center;
+
+    @include xlDesktop() {
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: unset;
+    }
+
     li {
+      @include xlDesktop() {
+        @include flexBetween();
+      }
+
+      @include tablet() {
+        flex-wrap: wrap;
+      }
+
       img {
         object-fit: contain;
         display: block;
@@ -328,6 +599,10 @@ header {
         transition: $transition;
         cursor: pointer;
         filter: grayscale(1);
+
+        @include mobile() {
+          width: 100% !important;
+        }
 
         &:hover {
           filter: grayscale(0);
@@ -338,7 +613,7 @@ header {
         tr td a iframe {
           display: none;
           position: absolute;
-          border: 1px solid #000;
+          border: 1px solid $dark;
           width: 400px;
           height: 400px;
         }
@@ -347,28 +622,60 @@ header {
   }
 }
 
+// Footer
+#footer {
+  ul {
+    @include xlMobile() {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    li {
+      &:first-child {
+        p {
+          color: $secondary;
+          margin: 0;
+        }
+      }
+
+      &:last-child {
+        blockquote {
+          color: $primary;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .contact {
+    @include flexCenter();
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem
+  }
+}
+
 // MEDIA popup
 #media {
-  display: none;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: $transition;
-  align-items: center;
-  justify-content: center;
+  @include modal();
   flex-direction: column;
-  background-color: rgba($color: #000000, $alpha: 0.9);
-  overflow-y: hidden;
 
-  iframe {
-    visibility: visible;
+  iframe,
+  img {
+    @include tablet() {
+      width: 100vw !important;
+      min-width: 100%;
+    }
+  }
+
+  img {
+    @include tablet() {
+      object-fit: contain !important;
+    }
   }
 
   &.active {
-    opacity: 1;
-    visibility: visible;
-    position: fixed;
-    display: flex;
+    @include modalActive();
   }
 
   button {
@@ -376,5 +683,15 @@ header {
     top: 1rem;
     right: 1rem;
     font-size: 1.5rem;
+
+    @include tablet() {
+      top: 0;
+      right: 0;
+    }
   }
+}
+
+// Supportive class
+.disOverflowY {
+  overflow-y: hidden;
 }

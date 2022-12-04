@@ -12,7 +12,7 @@ const DISPLAYMEDIA = () => {
     },
     {
       title: "KAO Entertainment",
-      src: "../images/kao-show.jpg",
+      src: "../images/activities/kao-show.jpg",
       type: "image",
     },
   ];
@@ -25,6 +25,7 @@ const DISPLAYMEDIA = () => {
   const showMedia = (src, title, type) => {
     media.classList.add("active");
     if (type === "video") {
+      resetAttribute(img);
       iframe.src = src;
       iframe.style.cssText = `
         width: 80vw;
@@ -32,6 +33,7 @@ const DISPLAYMEDIA = () => {
         visibility: visible;
       `;
     } else {
+      resetAttribute(iframe);
       img.src = src;
       img.style.cssText = `
         width: 80vw;
@@ -44,34 +46,43 @@ const DISPLAYMEDIA = () => {
     document.body.style.overflowY = "hidden";
   };
 
+  const resetAttribute = (media) => {
+    media.src = "";
+    media.style.cssText = `
+        width: 0;
+        height: 0;
+    `;
+  };
+
   const closeMedia = () => {
     document.body.style.overflowY = "scroll";
     media.classList.remove("active");
-    iframe.src = "";
-    iframe.style.cssText = `
-        width: 0;
-        height: 0;
-    `;
-    img.src = "";
-    img.style.cssText = `
-        width: 0;
-        height: 0;
-    `;
+    resetAttribute(iframe);
+    resetAttribute(img);
     document.body.removeChild(media);
-    document.body.removeChild(img);
   };
 
+  let isMediaShown = false;
   // show media
   const showMediaButtons = [...document.querySelectorAll(".desc > button")];
   showMediaButtons.map((btn, i) => {
     btn.onclick = () => {
       showMedia(medias[i].src, medias[i].title, medias[i].type);
+      isMediaShown = true;
     };
   });
 
   // close media
   document.querySelector("#media button").onclick = () => {
     closeMedia();
+    isMediaShown = false;
+  };
+
+  // ESC to close media
+  document.body.onkeydown = (e) => {
+    isMediaShown && e.key === "Escape" ? closeMedia() : null;
+    isMediaShown = false;
   };
 };
+
 export default DISPLAYMEDIA;
