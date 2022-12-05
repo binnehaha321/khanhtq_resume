@@ -16,11 +16,53 @@
   scroll-behavior: smooth;
 }
 
+html,
 body {
-  overflow-x: hidden;
-  min-width: 325px;
+  overflow: hidden;
+  height: 100vh;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  min-width: 320px;
   margin: auto;
   user-select: none;
+
+  @include xlTablet() {
+    height: unset;
+    overflow: auto;
+  }
+}
+
+.parent {
+  overflow: scroll;
+  height: calc(100vh - 72px);
+  scroll-snap-type: y mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > div,
+  & > section,
+  & > footer {
+    height: calc(100vh - 72px);
+    scroll-snap-align: start;
+    position: relative;
+
+    @include xlTablet() {
+      height: unset;
+    }
+  }
+
+  & > footer {
+    height: auto;
+  }
+
+  @include xlTablet() {
+    height: unset;
+  }
 }
 
 // Variables
@@ -70,7 +112,7 @@ textarea {
 @mixin modal {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 12;
   transition: $transition;
   background-color: rgba($color: $dark, $alpha: 0.9);
   overflow-y: hidden;
@@ -96,6 +138,7 @@ textarea {
   left: -100%;
   height: 100%;
   width: 70%;
+  max-width: 400px;
   z-index: 999;
   transition: $transition;
   background-color: $light;
@@ -178,7 +221,7 @@ textarea {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 11;
   width: 325px;
   max-width: 325px;
   background-color: $secondary;
@@ -260,8 +303,8 @@ header {
 
 // Hero
 .hero {
-  @include mobile() {
-    gap: 2rem;
+  @include tablet() {
+    gap: 2rem 0;
   }
 
   .left {
@@ -369,6 +412,15 @@ header {
   }
 
   .form-container {
+    @include xlTablet() {
+      margin-bottom: 30%;
+    }
+
+    @include mobile() {
+      flex-direction: column-reverse;
+      margin-bottom: initial;
+    }
+
     form {
       input,
       textarea {
@@ -378,6 +430,12 @@ header {
 
         &::placeholder {
           color: $primary;
+        }
+      }
+
+      button[type="submit"] {
+        @include mobile() {
+          float: right;
         }
       }
     }
@@ -420,6 +478,11 @@ header {
     "kaoImg kaoText"
     "kaoImg kaoText";
   gap: 3rem 2rem;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @include tablet() {
     grid-template-areas:
@@ -448,16 +511,18 @@ header {
       grid-area: kaoImg;
     }
 
+    opacity: 1;
+
+    @include tablet() {
+      opacity: initial;
+    }
+
     img {
       object-fit: contain;
       object-position: top;
       border-radius: 5px;
       cursor: pointer;
       transition: $transition;
-
-      &:hover {
-        opacity: 0.9;
-      }
     }
   }
 
@@ -496,8 +561,7 @@ header {
 
   .wrapper {
     position: relative;
-
-    // Gradient side fade
+    height: calc(100% - 90px);
 
     &:before,
     &:after {
@@ -526,12 +590,13 @@ header {
       gap: 1rem;
       position: relative;
       width: 100%;
+      height: 100%;
       overflow: hidden;
       white-space: nowrap;
       cursor: grab;
 
       li {
-        height: calc(100vh - 8rem);
+        height: 100%;
 
         @include xlTablet() {
           width: 95vw;
@@ -551,7 +616,7 @@ header {
         }
 
         img {
-          height: 95%;
+          height: calc(100% - 2rem);
           object-fit: contain;
 
           @include xlTablet() {
@@ -570,6 +635,14 @@ header {
 
 // Edu & Exp
 #eduexp {
+  @include xlDesktop() {
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   h2 {
     @include heading2();
   }
@@ -629,29 +702,16 @@ header {
       flex-direction: column;
       gap: 1rem;
     }
-
-    li {
-      &:first-child {
-        p {
-          color: $secondary;
-          margin: 0;
-        }
-      }
-
-      &:last-child {
-        blockquote {
-          color: $primary;
-          margin: 0;
-        }
-      }
-    }
   }
 
   .contact {
     @include flexCenter();
     flex-direction: row;
     gap: 1rem;
-    margin-top: 1rem
+
+    @include xlMobile() {
+      margin-top: 1rem;
+    }
   }
 }
 
@@ -694,4 +754,14 @@ header {
 // Supportive class
 .disOverflowY {
   overflow-y: hidden;
+}
+
+.stickyTop {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  box-shadow: 3px 3px 5px $secondary;
+  background-color: $light;
 }

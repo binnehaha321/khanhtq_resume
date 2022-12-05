@@ -36,8 +36,7 @@ const DISPLAYMEDIA = () => {
       resetAttribute(iframe);
       img.src = src;
       img.style.cssText = `
-        width: 80vw;
-        height: 90vh;
+        width: 60%;
         object-fit: cover;
       `;
     }

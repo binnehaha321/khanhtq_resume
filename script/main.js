@@ -7,7 +7,6 @@ import TRUNCATE from "./truncate.js";
 
 window.onload = () => {
   PREVENTDEFAULT();
-  SIDEBAR();
   DISPLAYMEDIA();
   TRUNCATE();
   SLIDERS();
@@ -16,7 +15,8 @@ window.onload = () => {
   const contact = document.querySelector(".contact");
   const socialHTML = document.querySelector("#social").innerHTML;
 
-  if (document.body.offsetWidth <= 660) {
+  if (document.body.offsetWidth <= 992) {
     contact.innerHTML += socialHTML;
+    SIDEBAR();
   }
 };

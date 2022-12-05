@@ -10784,11 +10784,51 @@ textarea.form-control-lg {
   scroll-behavior: smooth;
 }
 
+html,
 body {
-  overflow-x: hidden;
-  min-width: 325px;
+  overflow: hidden;
+  height: 100vh;
+  min-width: 320px;
   margin: auto;
   user-select: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 992px) {
+  html,
+  body {
+    height: unset;
+    overflow: auto;
+  }
+}
+
+.parent {
+  overflow: scroll;
+  height: calc(100vh - 72px);
+  scroll-snap-type: y mandatory;
+}
+.parent::-webkit-scrollbar {
+  display: none;
+}
+.parent > div, .parent > section, .parent > footer {
+  height: calc(100vh - 72px);
+  scroll-snap-align: start;
+  position: relative;
+}
+@media (max-width: 992px) {
+  .parent > div, .parent > section, .parent > footer {
+    height: unset;
+  }
+}
+.parent > footer {
+  height: auto;
+}
+@media (max-width: 992px) {
+  .parent {
+    height: unset;
+  }
 }
 
 :root {
@@ -10823,6 +10863,7 @@ textarea {
   left: -100%;
   height: 100%;
   width: 70%;
+  max-width: 400px;
   z-index: 999;
   transition: all 0.25s linear;
   background-color: #f8f9fa;
@@ -10896,7 +10937,7 @@ textarea {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 11;
   width: 325px;
   max-width: 325px;
   background-color: #E1E1E1;
@@ -10978,9 +11019,9 @@ header .contact-btn a {
   margin-left: auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .hero {
-    gap: 2rem;
+    gap: 2rem 0;
   }
 }
 .hero .left .top h2, .hero .left .top .h2 {
@@ -11045,7 +11086,7 @@ header .contact-btn a {
 #contact-form {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 12;
   transition: all 0.25s linear;
   background-color: rgba(33, 37, 41, 0.9);
   overflow-y: hidden;
@@ -11082,6 +11123,17 @@ header .contact-btn a {
   opacity: 1;
   visibility: visible;
 }
+@media (max-width: 992px) {
+  #contact-form .form-container {
+    margin-bottom: 30%;
+  }
+}
+@media (max-width: 480px) {
+  #contact-form .form-container {
+    flex-direction: column-reverse;
+    margin-bottom: initial;
+  }
+}
 #contact-form .form-container form input,
 #contact-form .form-container form textarea {
   background-color: transparent;
@@ -11091,6 +11143,11 @@ header .contact-btn a {
 #contact-form .form-container form input::placeholder,
 #contact-form .form-container form textarea::placeholder {
   color: #FE5B02;
+}
+@media (max-width: 480px) {
+  #contact-form .form-container form button[type=submit] {
+    float: right;
+  }
 }
 #contact-form .form-container .visit-card .information li {
   display: grid;
@@ -11117,6 +11174,10 @@ header .contact-btn a {
 #activities {
   grid-template-areas: "heading heading" "netImg netText" "gwText gwImg" "kaoImg gwImg" "kaoImg kaoText" "kaoImg kaoText";
   gap: 3rem 2rem;
+  overflow-y: scroll;
+}
+#activities::-webkit-scrollbar {
+  display: none;
 }
 @media (max-width: 768px) {
   #activities {
@@ -11128,6 +11189,9 @@ header .contact-btn a {
   font-size: 3rem;
   letter-spacing: 5px;
 }
+#activities .image {
+  opacity: 1;
+}
 #activities .image.img_netcompany {
   grid-area: netImg;
 }
@@ -11137,15 +11201,17 @@ header .contact-btn a {
 #activities .image.img_kao {
   grid-area: kaoImg;
 }
+@media (max-width: 768px) {
+  #activities .image {
+    opacity: initial;
+  }
+}
 #activities .image img {
   object-fit: contain;
   object-position: top;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.25s linear;
-}
-#activities .image img:hover {
-  opacity: 0.9;
 }
 #activities .desc.img_netcompany {
   grid-area: netText;
@@ -11177,6 +11243,7 @@ header .contact-btn a {
 }
 #certificate .wrapper {
   position: relative;
+  height: calc(100% - 90px);
 }
 #certificate .wrapper:before, #certificate .wrapper:after {
   position: absolute;
@@ -11202,12 +11269,13 @@ header .contact-btn a {
   gap: 1rem;
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   white-space: nowrap;
   cursor: grab;
 }
 #certificate .wrapper ul li {
-  height: calc(100vh - 8rem);
+  height: 100%;
 }
 @media (max-width: 992px) {
   #certificate .wrapper ul li {
@@ -11227,7 +11295,7 @@ header .contact-btn a {
   }
 }
 #certificate .wrapper ul li img {
-  height: 95%;
+  height: calc(100% - 2rem);
   object-fit: contain;
 }
 @media (max-width: 992px) {
@@ -11242,6 +11310,14 @@ header .contact-btn a {
   }
 }
 
+@media (max-width: 1200px) {
+  #eduexp {
+    overflow: auto;
+  }
+  #eduexp::-webkit-scrollbar {
+    display: none;
+  }
+}
 #eduexp h2, #eduexp .h2 {
   font-size: 3rem;
   letter-spacing: 5px;
@@ -11299,27 +11375,23 @@ header .contact-btn a {
     gap: 1rem;
   }
 }
-#footer ul li:first-child p {
-  color: #E1E1E1;
-  margin: 0;
-}
-#footer ul li:last-child blockquote {
-  color: #FE5B02;
-  margin: 0;
-}
 #footer .contact {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 1rem;
-  margin-top: 1rem;
+}
+@media (max-width: 660px) {
+  #footer .contact {
+    margin-top: 1rem;
+  }
 }
 
 #media {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 12;
   transition: all 0.25s linear;
   background-color: rgba(33, 37, 41, 0.9);
   overflow-y: hidden;
@@ -11361,6 +11433,16 @@ header .contact-btn a {
 
 .disOverflowY {
   overflow-y: hidden;
+}
+
+.stickyTop {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  box-shadow: 3px 3px 5px #E1E1E1;
+  background-color: #f8f9fa;
 }
 
 /*# sourceMappingURL=style.css.map */
