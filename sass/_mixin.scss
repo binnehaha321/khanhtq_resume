@@ -1,0 +1,48 @@
+@mixin heading2 {
+  font-size: 5rem;
+  letter-spacing: 5px;
+  text-shadow: 3px 5px 5px #ccc;
+
+  @include xlMobile() {
+    font-size: 3rem;
+  }
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin modal {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  transition: $transition;
+  background-color: rgba($color: $info, $alpha: 0.9);
+  overflow-y: hidden;
+  @include modalDeactive();
+  @include flexCenter();
+  @include hideScrollBar();
+}
+
+@mixin modalDeactive {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin modalActive {
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin hideScrollBar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

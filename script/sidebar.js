@@ -11,16 +11,22 @@ const SIDEBAR = () => {
   sidebarFooter.append(social);
 
   // Open sidebar
-  bar.onclick = () => {
-    sidebar.classList.add("showSidebar");
-    body.classList.add("disOverflowY");
-  };
+  if (bar) {
+    bar.onclick = () => {
+      sidebar.classList.add("showSidebar");
+      body.classList.add("disOverflowY");
+    };
+  }
 
   // Close sidebar
-  close.onclick = () => {
+  const closeSidebar = () => {
     sidebar.classList.remove("showSidebar");
     body.classList.remove("disOverflowY");
   };
+
+  close.onclick = closeSidebar;
+
+  [...menu.children].forEach((item) => (item.onclick = closeSidebar));
 };
 
 export default SIDEBAR;

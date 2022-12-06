@@ -4,6 +4,7 @@
 // Poppins
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
+@import "./mixin.scss";
 @import "./main.scss";
 @import "./responsive.scss";
 
@@ -16,18 +17,38 @@
   scroll-behavior: smooth;
 }
 
+// Variables
+:root {
+  --sidebar-height: 72px;
+  --dark: $info;
+  --light: $light;
+  --primary: $primary;
+}
+
+html[data-theme="light"] {
+  --pri: #fe5b02;
+  --bg-color: #f8f9fa;
+  --text-color: #241f21;
+  --gray: #e1e1e1;
+}
+
+html[data-theme="dark"] {
+  --pri: #fe5b02;
+  --bg-color: #241f21;
+  --text-color: #f8f9fa;
+  --gray: #7f7f7f;
+}
+
 html,
 body {
   overflow: hidden;
   height: 100vh;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   min-width: 320px;
   margin: auto;
   user-select: none;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  @include hideScrollBar();
 
   @include xlTablet() {
     height: unset;
@@ -37,38 +58,30 @@ body {
 
 .parent {
   overflow: scroll;
-  height: calc(100vh - 72px);
+  height: calc(100vh - (var(--sidebar-height)));
   scroll-snap-type: y mandatory;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  @include hideScrollBar();
 
   & > div,
   & > section,
   & > footer {
-    height: calc(100vh - 72px);
+    height: calc(100vh - (var(--sidebar-height)));
     scroll-snap-align: start;
     position: relative;
 
-    @include xlTablet() {
+    @include tablet() {
       height: unset;
     }
+  }
+
+  & > section#certificate {
+    height: calc(100vh - (var(--sidebar-height)));
   }
 
   & > footer {
     height: auto;
   }
-
-  @include xlTablet() {
-    height: unset;
-  }
-}
-
-// Variables
-:root {
-  --dark: #000;
-  --light: #fff;
 }
 
 // Config
@@ -93,43 +106,6 @@ textarea {
   resize: none;
 }
 
-@mixin heading2 {
-  font-size: 3rem;
-  letter-spacing: 5px;
-}
-
-@mixin flexCenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@mixin flexBetween {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@mixin modal {
-  position: fixed;
-  inset: 0;
-  z-index: 12;
-  transition: $transition;
-  background-color: rgba($color: $dark, $alpha: 0.9);
-  overflow-y: hidden;
-  @include modalDeactive();
-  @include flexCenter();
-}
-
-@mixin modalDeactive {
-  opacity: 0;
-  visibility: hidden;
-}
-
-@mixin modalActive {
-  opacity: 1;
-  visibility: visible;
-}
-
 /*-------- PROJECT --------*/
 // Sidebar
 #sidebar {
@@ -141,11 +117,20 @@ textarea {
   max-width: 400px;
   z-index: 999;
   transition: $transition;
-  background-color: $light;
+  background-color: var(--bg-color);
   box-shadow: 5px 5px 10px #ccc;
   display: flex;
   flex-direction: column;
   @include modalDeactive();
+
+  @include mini() {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  @include height350() {
+    overflow-y: scroll;
+  }
 
   &.showSidebar {
     left: 0 !important;
@@ -159,17 +144,17 @@ textarea {
       display: flex;
       align-items: center;
       font-size: 2rem;
-      color: $info;
+      color: var(--text-color);
       letter-spacing: 5px;
       margin-bottom: 0;
 
       span {
-        background-color: $info;
+        background-color: var(--text-color);
         @include flexCenter();
         width: 60px;
         height: 60px;
         border-radius: 100rem;
-        color: $light;
+        color: var(--bg-color);
         letter-spacing: 0;
       }
     }
@@ -190,14 +175,14 @@ textarea {
 
       li {
         a {
-          color: $info;
+          color: var(--text-color);
           font-size: 1.5rem;
 
           i {
             width: 30px;
             text-align: center;
             margin-right: 0.5rem;
-            color: $primary;
+            color: var(--pri);
           }
         }
       }
@@ -224,8 +209,8 @@ textarea {
   z-index: 11;
   width: 325px;
   max-width: 325px;
-  background-color: $secondary;
-  border-color: $secondary;
+  background-color: var(--gray);
+  border-color: var(--gray);
   border-radius: 1rem;
   @include flexBetween();
 
@@ -257,7 +242,7 @@ header {
       white-space: nowrap;
 
       a {
-        color: var(--dark);
+        color: var(--text-color);
 
         i {
           display: none !important;
@@ -269,7 +254,8 @@ header {
   .bar {
     flex: 2;
     display: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
 
     @include xlTablet() {
       display: block;
@@ -283,11 +269,50 @@ header {
       width: 40px;
       height: 40px;
       border-radius: 100rem;
-      background-color: var(--dark);
-      color: var(--light);
+      background-color: var(--text-color);
+      color: var(--bg-color);
       font-weight: bold;
       font-size: 40px;
       margin: auto;
+      cursor: pointer;
+      position: relative;
+
+      // &::before {
+      //   content: "\f0eb";
+      //   font-family: "Font Awesome 5 Free";
+      //   font-weight: 900;
+      //   display: inline-block;
+      //   font-style: normal;
+      //   font-variant: normal;
+      //   text-rendering: auto;
+      //   -webkit-font-smoothing: antialiased;
+      //   position: absolute;
+      //   animation: lightoff 3s alternate linear infinite;
+      // }
+
+      // @keyframes lightoff {
+      //   0% {
+      //     left: -1rem;
+      //     color: red;
+      //   }
+      //   25% {
+      //     left: -0.5rem;
+      //     color: blue;
+      //   }
+      //   50% {
+      //     left: 0;
+      //     right: 0;
+      //     color: yellow;
+      //   }
+      //   75% {
+      //     right: -0.5rem;
+      //     color: green;
+      //   }
+      //   100% {
+      //     right: -1rem;
+      //     color: red;
+      //   }
+      // }
     }
   }
 
@@ -348,15 +373,15 @@ header {
               background-color: #fe8e3e;
             }
             &:nth-child(2) {
-              background-color: $primary;
-              color: $light;
+              background-color: var(--pri);
+              color: var(--bg-color);
             }
             &:nth-child(3) {
-              background-color: $dark;
-              color: $light;
+              background-color: var(--text-color);
+              color: var(--bg-color);
             }
             &:nth-child(4) {
-              background-color: $secondary;
+              background-color: var(--gray);
             }
           }
         }
@@ -380,6 +405,7 @@ header {
 // Contact form
 #contact-form {
   @include modal();
+
   &::before {
     content: "";
     display: block;
@@ -396,6 +422,8 @@ header {
     border-radius: 5px;
     z-index: 4;
     height: 100vh;
+    overflow-y: scroll;
+    @include hideScrollBar();
 
     .heading {
       width: fit-content;
@@ -412,24 +440,19 @@ header {
   }
 
   .form-container {
-    @include xlTablet() {
-      margin-bottom: 30%;
-    }
-
-    @include mobile() {
+    @include tablet() {
       flex-direction: column-reverse;
-      margin-bottom: initial;
     }
 
     form {
       input,
       textarea {
         background-color: transparent;
-        color: $light;
-        border: 2px solid $light;
+        color: var(--bg-color);
+        border: 2px solid var(--bg-color);
 
         &::placeholder {
-          color: $primary;
+          color: var(--pri);
         }
       }
 
@@ -450,9 +473,9 @@ header {
           margin-bottom: 1rem;
 
           i {
-            color: $light;
+            color: var(--bg-color);
             text-align: center;
-            background-color: $primary;
+            background-color: var(--pri);
             width: 40px;
             height: 40px;
             border-radius: 5px;
@@ -460,7 +483,7 @@ header {
           }
 
           span {
-            color: $light;
+            color: var(--bg-color);
           }
         }
       }
@@ -480,9 +503,7 @@ header {
   gap: 3rem 2rem;
   overflow-y: scroll;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  @include hideScrollBar();
 
   @include tablet() {
     grid-template-areas:
@@ -523,6 +544,11 @@ header {
       border-radius: 5px;
       cursor: pointer;
       transition: $transition;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 
@@ -554,6 +580,10 @@ header {
   h2 {
     @include heading2();
 
+    @include xlTablet() {
+      margin-top: unset;
+    }
+
     @include mini() {
       font-size: 2.5rem;
     }
@@ -561,7 +591,7 @@ header {
 
   .wrapper {
     position: relative;
-    height: calc(100% - 90px);
+    height: calc(100% - 9rem);
 
     &:before,
     &:after {
@@ -591,28 +621,50 @@ header {
       position: relative;
       width: 100%;
       height: 100%;
-      overflow: hidden;
       white-space: nowrap;
       cursor: grab;
+      scroll-snap-type: x mandatory;
+      scroll-snap-stop: always;
+      scroll-padding: 15px;
+      overflow-y: hidden;
+      touch-action: manipulation;
+      @include hideScrollBar();
+
+      &:active {
+        cursor: grabbing;
+      }
+
+      @include xlTablet() {
+        align-items: flex-start;
+      }
 
       li {
         height: 100%;
+        scroll-snap-align: start;
 
         @include xlTablet() {
-          width: 95vw;
+          width: 50vw;
           height: auto;
 
           &:nth-child(4) {
             height: 90vh;
 
             img {
-              height: 95%;
+              height: 70%;
+
+              @include height350 {
+                height: 90%;
+              }
             }
           }
         }
 
+        @include tablet() {
+          width: 70vw;
+        }
+
         @include mobile() {
-          height: auto !important;
+          width: 80vw;
         }
 
         img {
@@ -620,12 +672,16 @@ header {
           object-fit: contain;
 
           @include xlTablet() {
-            width: 95vw;
+            width: 50vw;
             height: auto;
           }
 
+          @include tablet() {
+            width: 70vw;
+          }
+
           @include mobile() {
-            height: auto !important;
+            width: 80vw;
           }
         }
       }
@@ -638,9 +694,7 @@ header {
   @include xlDesktop() {
     overflow: auto;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    @include hideScrollBar();
   }
 
   h2 {
@@ -683,12 +737,16 @@ header {
       }
 
       table {
-        tr td a iframe {
-          display: none;
-          position: absolute;
-          border: 1px solid $dark;
-          width: 400px;
-          height: 400px;
+        tr td,
+        tr th {
+          color: var(--text-color);
+          a iframe {
+            display: none;
+            position: absolute;
+            border: 1px solid var(--text-color);
+            width: 400px;
+            height: 400px;
+          }
         }
       }
     }
@@ -697,10 +755,18 @@ header {
 
 // Footer
 #footer {
+  background-color: var(--gray);
+  color: var(--text-color);
   ul {
     @include xlMobile() {
       flex-direction: column;
       gap: 1rem;
+    }
+
+    li blockquote {
+      @include mini {
+        font-size: 12px;
+      }
     }
   }
 
@@ -749,19 +815,4 @@ header {
       right: 0;
     }
   }
-}
-
-// Supportive class
-.disOverflowY {
-  overflow-y: hidden;
-}
-
-.stickyTop {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  box-shadow: 3px 3px 5px $secondary;
-  background-color: $light;
 }
