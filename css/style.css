@@ -10786,6 +10786,49 @@ textarea.form-control-lg {
   color: var(--dark);
 }
 
+.active {
+  color: #fe5b02 !important;
+  position: relative;
+}
+.active::before {
+  content: "";
+  height: 3px;
+  width: 50%;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  background-color: #fe5b02;
+  animation: slideLeft 0.25s linear;
+}
+.active::after {
+  content: "";
+  height: 3px;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  background-color: #fe5b02;
+  animation: slideRight 0.5s linear;
+}
+@keyframes slideLeft {
+  from {
+    left: -1rem;
+    right: -1rem;
+  }
+  to {
+    left: 0;
+    right: 0;
+  }
+}
+@keyframes slideRight {
+  from {
+    right: -1rem;
+  }
+  to {
+    right: 0;
+  }
+}
+
 .border-radius-lg {
   border-radius: 30px !important;
 }
@@ -11001,46 +11044,46 @@ textarea {
   opacity: 0.8;
 }
 
-header {
+header .wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-header ul {
+header .wrapper ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex: 2;
 }
 @media (max-width: 992px) {
-  header ul {
+  header .wrapper ul {
     display: none;
   }
 }
-header ul li {
+header .wrapper ul li {
   white-space: nowrap;
 }
-header ul li a {
+header .wrapper ul li a {
   color: var(--text-color);
 }
-header ul li a i {
+header .wrapper ul li a i {
   display: none !important;
 }
-header .bar {
+header .wrapper .bar {
   flex: 2;
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
 @media (max-width: 992px) {
-  header .bar {
+  header .wrapper .bar {
     display: block;
   }
 }
-header .letter-name {
+header .wrapper .letter-name {
   flex: 1;
 }
-header .letter-name span {
+header .wrapper .letter-name span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11055,10 +11098,10 @@ header .letter-name span {
   cursor: pointer;
   position: relative;
 }
-header .contact-btn {
+header .wrapper .contact-btn {
   flex: 2;
 }
-header .contact-btn a {
+header .wrapper .contact-btn a {
   padding: 0.5rem 1rem;
   display: block;
   margin-left: auto;
@@ -11235,6 +11278,7 @@ header .contact-btn a {
   font-size: 5rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
+  text-transform: uppercase;
 }
 @media (max-width: 660px) {
   #activities h2, #activities .h2 {
@@ -11280,6 +11324,7 @@ header .contact-btn a {
 }
 #activities .desc blockquote {
   font-size: 1.5rem;
+  text-transform: capitalize;
 }
 #activities .desc p {
   text-indent: 1.5rem;
@@ -11292,6 +11337,7 @@ header .contact-btn a {
   font-size: 5rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
+  text-transform: uppercase;
 }
 @media (max-width: 660px) {
   #certificate h2, #certificate .h2 {
@@ -11420,6 +11466,7 @@ header .contact-btn a {
   font-size: 5rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
+  text-transform: uppercase;
 }
 @media (max-width: 660px) {
   #eduexp h2, #eduexp .h2 {
@@ -11468,6 +11515,7 @@ header .contact-btn a {
 #eduexp ul li table tr td,
 #eduexp ul li table tr th {
   color: var(--text-color);
+  text-transform: capitalize;
 }
 #eduexp ul li table tr td a iframe,
 #eduexp ul li table tr th a iframe {
@@ -11476,6 +11524,9 @@ header .contact-btn a {
   border: 1px solid var(--text-color);
   width: 400px;
   height: 400px;
+}
+#eduexp ul li tr:last-child td {
+  text-transform: none;
 }
 
 #footer {
@@ -11550,6 +11601,50 @@ header .contact-btn a {
     top: 0;
     right: 0;
   }
+}
+
+.toggle-theme-wrapper {
+  position: fixed;
+  top: 50%;
+  right: 5px;
+  z-index: 11;
+  width: 5.5rem;
+  height: 2.5rem;
+}
+@media (max-width: 992px) {
+  .toggle-theme-wrapper {
+    display: none;
+  }
+}
+.toggle-theme-wrapper label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.toggle-theme-wrapper label input:checked + .slider {
+  background-color: #fe5b02;
+}
+.toggle-theme-wrapper label input:checked + .slider::before {
+  transform: translateX(48px);
+  background-color: #f8f9fa;
+}
+.toggle-theme-wrapper label .slider {
+  height: 100%;
+  border-radius: 50rem;
+  background-color: #241f21;
+  transition: all 0.25s linear;
+}
+.toggle-theme-wrapper label .slider::before {
+  content: "";
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50rem;
+  background-color: #e1e1e1;
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  transition: all 0.25s linear;
 }
 
 /*# sourceMappingURL=style.css.map */

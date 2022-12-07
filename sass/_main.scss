@@ -22,6 +22,52 @@ $transition: all 0.25s linear;
   color: var(--dark);
 }
 
+.active {
+  color: $primary !important;
+  position: relative;
+
+  &::before {
+    content: "";
+    height: 3px;
+    width: 50%;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    background-color: $primary;
+    animation: slideLeft 0.25s linear;
+  }
+
+  &::after {
+    content: "";
+    height: 3px;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    background-color: $primary;
+    animation: slideRight 0.5s linear;
+  }
+
+  @keyframes slideLeft {
+    from {
+      left: -1rem;
+      right: -1rem;
+    }
+    to {
+      left: 0;
+      right: 0;
+    }
+  }
+  @keyframes slideRight {
+    from {
+      right: -1rem;
+    }
+    to {
+      right: 0;
+    }
+  }
+}
+
 .border-radius-lg {
   border-radius: 30px !important;
 }

@@ -2,6 +2,7 @@
   font-size: 5rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
+  text-transform: uppercase;
 
   @include xlMobile() {
     font-size: 3rem;

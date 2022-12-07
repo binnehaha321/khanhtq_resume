@@ -7,8 +7,16 @@ const SIDEBAR = () => {
   const bar = document.querySelector(".bar");
   const body = document.querySelector("html");
   const close = document.querySelector("#sidebar .close");
+  const toggleThemeBtn = document.querySelector(".toggle-theme-wrapper");
   sidebarBody.append(menu);
+  sidebarBody.append(toggleThemeBtn);
   sidebarFooter.append(social);
+
+  toggleThemeBtn.style.cssText = `
+    display: unset;
+    left: 1rem;
+    top: 60%;
+  `;
 
   // Open sidebar
   if (bar) {

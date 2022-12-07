@@ -1,6 +1,8 @@
 const TOGGLETHEME = () => {
   const html = document.querySelector("html");
-  document.querySelector(".letter-name span").onclick = () => {
+  const toggleThemeBtn = document.querySelector(".toggle-theme-wrapper input");
+
+  toggleThemeBtn.onclick = () => {
     if (html.getAttribute(["data-theme"]) === "light") {
       html.setAttribute("data-theme", "dark");
     } else {

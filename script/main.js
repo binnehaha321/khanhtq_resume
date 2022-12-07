@@ -1,5 +1,6 @@
 import CONTACTFORM from "./contactForm.js";
 import DISPLAYMEDIA from "./handleDisplayMedia.js";
+import LANGUAGES from "./languages.js";
 import NAVBAR from "./navbar.js";
 import PREVENTDEFAULT from "./preventDefault.js";
 import SIDEBAR from "./sidebar.js";
@@ -9,12 +10,13 @@ import TRUNCATE from "./truncate.js";
 
 window.onload = () => {
   PREVENTDEFAULT();
-  TOGGLETHEME();
   NAVBAR();
+  TOGGLETHEME();
   DISPLAYMEDIA();
   TRUNCATE();
   SLIDERS();
   CONTACTFORM();
+  LANGUAGES();
 
   const contact = document.querySelector(".contact");
   const socialHTML = document.querySelector("#social").innerHTML;
