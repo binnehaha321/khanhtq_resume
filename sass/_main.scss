@@ -13,13 +13,14 @@ $transition: all 0.25s linear;
 
 .stickyTop {
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
   box-shadow: 3px 3px 5px var(--gray);
-  background-color: var(--light);
-  color: var(--dark);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .active {

@@ -1,17 +1,16 @@
+import { activityTitle } from "./variables.js";
+
 const DISPLAYMEDIA = () => {
   const medias = [
     {
-      title: "Netcompany Case Study",
       src: "https://www.youtube.com/embed/gh3OQYfbg18?start=439",
       type: "video",
     },
     {
-      title: "Greenwich Experience On HTV7",
       src: "https://www.youtube.com/embed/G5exkkhBXGU?start=159",
       type: "video",
     },
     {
-      title: "KAO Entertainment",
       src: "../images/activities/kao-show.jpg",
       type: "image",
     },
@@ -66,7 +65,7 @@ const DISPLAYMEDIA = () => {
   const showMediaButtons = [...document.querySelectorAll(".desc > button")];
   showMediaButtons.map((btn, i) => {
     btn.onclick = () => {
-      showMedia(medias[i].src, medias[i].title, medias[i].type);
+      showMedia(medias[i].src, activityTitle[i].textContent, medias[i].type);
       isMediaShown = true;
     };
   });

@@ -1,6 +1,6 @@
 import CONTACTFORM from "./contactForm.js";
 import DISPLAYMEDIA from "./handleDisplayMedia.js";
-import LANGUAGES from "./languages.js";
+import CHANGE_LANGUAGES from "./changeLanguage.js";
 import NAVBAR from "./navbar.js";
 import PREVENTDEFAULT from "./preventDefault.js";
 import SIDEBAR from "./sidebar.js";
@@ -16,17 +16,15 @@ window.onload = () => {
   TRUNCATE();
   SLIDERS();
   CONTACTFORM();
-  LANGUAGES();
+  CHANGE_LANGUAGES();
 
   const contact = document.querySelector(".contact");
   const socialHTML = document.querySelector("#social").innerHTML;
-  const screenWidth = document.body.offsetWidth;
-  if (screenWidth <= 992) {
+
+  if (window.matchMedia("(max-width: 992px)").matches) {
     contact.innerHTML += socialHTML;
     SIDEBAR();
-  }
-
-  if (screenWidth >= 1024) {
+  } else if (window.matchMedia("(min-width: 1024px)").matches) {
     HANDLESLIDERS();
   }
 };

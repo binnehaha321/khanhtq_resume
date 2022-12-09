@@ -1,11 +1,12 @@
 @mixin heading2 {
-  font-size: 5rem;
+  font-size: 4rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
   text-transform: uppercase;
 
   @include xlMobile() {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    letter-spacing: unset;
   }
 }
 

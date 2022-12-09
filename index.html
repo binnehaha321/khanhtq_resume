@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-language="en">
 
 <head>
     <meta charset="UTF-8">
@@ -70,7 +70,7 @@
         <div class="wrapper col-12 col-lg-9 p-3 d-flex flex-column justify-content-between">
             <div class="heading text-center mx-auto">
                 <p class="text-light">get in touch</p>
-                <h4 class="text-primary fw-semibold pb-2 px-3 border-bottom">Contact Me</h4>
+                <h4 class="text-primary fw-semibold pb-2 px-3 border-bottom text-capitalize">Contact Me</h4>
             </div>
             <div class="form-container d-flex justify-content-between">
                 <form action="https://formsubmit.co/4c49adcf5c468cff0a6056e6ac0f418f" method="POST" target="_blank"
@@ -79,14 +79,14 @@
                     <input type="email" name="email" class="form-control mb-3" required placeholder="Email">
                     <textarea name="message" cols="30" rows="8" class="form-control mb-3" required
                         placeholder="Your message..."></textarea>
-                    <button type="button" class="cancel btn btn-secondary me-3">Cancel</button>
-                    <button type="submit" class="btn btn-primary text-light">Send</button>
+                    <button type="button" class="cancel btn btn-secondary me-3 text-capitalize">Cancel</button>
+                    <button type="submit" class="submit btn btn-primary text-light text-capitalize">Send</button>
                 </form>
                 <div class="visit-card col-12 col-md-5">
                     <ul class="information">
                         <li>
                             <i class="fa-solid fa-location-dot"></i>
-                            <span>Ho Chi Minh City, Vietnam</span>
+                            <span class="text-capitalize">Ho Chi Minh City, Vietnam</span>
                         </li>
                         <li>
                             <i class="fa-solid fa-envelope"></i>
@@ -109,7 +109,7 @@
                     <a href="#activities"><i class="fa-solid fa-bookmark"></i>Activities</a>
                 </li>
                 <li>
-                    <a href="#certificate"><i class="fa-solid fa-award"></i>Certificate</a>
+                    <a href="#certificate"><i class="fa-solid fa-award"></i>Certificate</i></a>
                 </li>
                 <li>
                     <a href="#eduexp"><i class="fa-solid fa-graduation-cap"></i>Edu & Exp</a>
@@ -128,7 +128,8 @@
         <section class="container-lg container-fluid hero d-flex flex-wrap justify-content-between pt-5">
             <div class="left col-12 col-md-6 d-flex flex-column justify-content-between">
                 <div class="top">
-                    <h2>My name is <br /> <b class="text-primary">Quoc Khanh Truong</b></h2>
+                    <h2 class="state d-block">My name is</h2>
+                    <h2 class="fullname text-primary fw-bolder d-block">Quoc Khanh Truong</h2>
                     <p>I am a Frontend developer with beloving composing music. &#10084;</p>
                     <button class="hire btn btn-primary border-radius-lg text-light my-3">Hire Me</button>
                 </div>
@@ -297,12 +298,22 @@
         <button class="position-fixed btn btn-danger text-light">×</button>
     </div>
 
-    <!-- LANGUAGE -->
+    <!-- THEME -->
     <div class="toggle-theme-wrapper">
         <label for="toggle-theme">
             <input id="toggle-theme" type="checkbox" hidden>
             <div class="slider"></div>
         </label>
+    </div>
+
+    <!-- LANGUAGE -->
+    <div id="language">
+        <button type="button" id="lang-en" lang="en">
+            <img loading="lazy" width="48" src="./images/languages/en.png" alt="en" />
+        </button>
+        <button type="button" id="lang-vi" lang="vi">
+            <img loading="lazy" width="48" src="./images/languages/vi.png" alt="vi" />
+        </button>
     </div>
 </body>
 <script type="module" src="./script/main.js"></script>

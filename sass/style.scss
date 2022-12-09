@@ -2,7 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 
 // Poppins
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+// Be Vietnam Pro
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap");
 
 @import "./mixin.scss";
 @import "./main.scss";
@@ -13,7 +16,6 @@
   padding: 0;
   box-sizing: border-box;
   list-style-type: none;
-  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -39,6 +41,14 @@ html[data-theme="dark"] {
   --gray: #7f7f7f;
 }
 
+html[data-language="en"] {
+  --font-family: "Poppins", sans-serif;
+}
+
+html[data-language="vi"] {
+  --font-family: "Be Vietnam Pro", sans-serif;
+}
+
 html,
 body {
   overflow: hidden;
@@ -48,6 +58,7 @@ body {
   user-select: none;
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: var(--font-family);
   @include hideScrollBar();
 
   @include xlTablet() {
@@ -123,7 +134,7 @@ textarea {
   flex-direction: column;
   @include modalDeactive();
 
-  @include mini() {
+  @include mobile() {
     max-width: 100%;
     width: 100%;
   }
@@ -234,6 +245,7 @@ header {
     ul {
       @include flexBetween();
       flex: 2;
+      gap: 2rem;
 
       @include xlTablet() {
         display: none;
@@ -277,43 +289,6 @@ header {
         margin: auto;
         cursor: pointer;
         position: relative;
-
-        // &::before {
-        //   content: "\f0eb";
-        //   font-family: "Font Awesome 5 Free";
-        //   font-weight: 900;
-        //   display: inline-block;
-        //   font-style: normal;
-        //   font-variant: normal;
-        //   text-rendering: auto;
-        //   -webkit-font-smoothing: antialiased;
-        //   position: absolute;
-        //   animation: lightoff 3s alternate linear infinite;
-        // }
-
-        // @keyframes lightoff {
-        //   0% {
-        //     left: -1rem;
-        //     color: red;
-        //   }
-        //   25% {
-        //     left: -0.5rem;
-        //     color: blue;
-        //   }
-        //   50% {
-        //     left: 0;
-        //     right: 0;
-        //     color: yellow;
-        //   }
-        //   75% {
-        //     right: -0.5rem;
-        //     color: green;
-        //   }
-        //   100% {
-        //     right: -1rem;
-        //     color: red;
-        //   }
-        // }
       }
     }
 
@@ -339,7 +314,6 @@ header {
       h2 {
         font-family: "Obitron", sans-serif;
         font-size: 3.5rem;
-        line-height: 1.5;
 
         @include tv() {
           font-size: 3rem;
@@ -475,9 +449,9 @@ header {
           margin-bottom: 1rem;
 
           i {
-            color: var(--bg-color);
+            color: var(--pri);
             text-align: center;
-            background-color: var(--pri);
+            background-color: var(--bg-color);
             width: 40px;
             height: 40px;
             border-radius: 5px;
@@ -485,7 +459,7 @@ header {
           }
 
           span {
-            color: var(--bg-color);
+            color: var(--pri);
           }
         }
       }
@@ -503,8 +477,8 @@ header {
     "kaoImg kaoText"
     "kaoImg kaoText";
   gap: 3rem 2rem;
+  padding-bottom: 3rem;
   overflow-y: scroll;
-
   @include hideScrollBar();
 
   @include tablet() {
@@ -532,6 +506,12 @@ header {
     }
     &.img_kao {
       grid-area: kaoImg;
+
+      img {
+        @include tablet() {
+          height: calc(100vh - 200px);
+        }
+      }
     }
 
     opacity: 1;
@@ -555,6 +535,12 @@ header {
   }
 
   .desc {
+    @include tablet() {
+      &:last-child {
+        padding-bottom: 3rem;
+      }
+    }
+
     &.img_netcompany {
       grid-area: netText;
     }
@@ -730,7 +716,7 @@ header {
         cursor: pointer;
         filter: grayscale(1);
 
-        @include mobile() {
+        @include tablet() {
           width: 100% !important;
         }
 
@@ -828,7 +814,9 @@ header {
 // toggle-theme
 .toggle-theme-wrapper {
   @include xlTablet() {
+    @include modalDeactive();
     display: none;
+    transition: $transition;
   }
 
   position: fixed;
@@ -837,30 +825,30 @@ header {
   z-index: 11;
   width: 5.5rem;
   height: 2.5rem;
-  
+
   label {
     display: block;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    
+
     input {
       &:checked + .slider {
         background-color: $primary;
-        
+
         &::before {
           transform: translateX(48px);
           background-color: $light;
         }
       }
     }
-    
+
     .slider {
       height: 100%;
       border-radius: 50rem;
       background-color: $info;
       transition: $transition;
-      
+
       &::before {
         content: "";
         width: 2rem;
@@ -873,5 +861,29 @@ header {
         transition: $transition;
       }
     }
+  }
+}
+
+// Language
+#language {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  // display: none;
+  @include modalActive();
+
+  button {
+    width: fit-content;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  @include xlTablet() {
+    @include modalDeactive();
+    display: none;
+    transition: $transition;
   }
 }

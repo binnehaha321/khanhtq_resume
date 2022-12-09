@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap");
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -10777,13 +10778,14 @@ textarea.form-control-lg {
 
 .stickyTop {
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
   box-shadow: 3px 3px 5px var(--gray);
-  background-color: var(--light);
-  color: var(--dark);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .active {
@@ -10838,7 +10840,6 @@ textarea.form-control-lg {
   padding: 0;
   box-sizing: border-box;
   list-style-type: none;
-  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -10863,6 +10864,14 @@ html[data-theme=dark] {
   --gray: #7f7f7f;
 }
 
+html[data-language=en] {
+  --font-family: "Poppins", sans-serif;
+}
+
+html[data-language=vi] {
+  --font-family: "Be Vietnam Pro", sans-serif;
+}
+
 html,
 body {
   overflow: hidden;
@@ -10872,6 +10881,7 @@ body {
   user-select: none;
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: var(--font-family);
 }
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
@@ -10947,7 +10957,7 @@ textarea {
   opacity: 0;
   visibility: hidden;
 }
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   #sidebar {
     max-width: 100%;
     width: 100%;
@@ -11054,6 +11064,7 @@ header .wrapper ul {
   align-items: center;
   justify-content: space-between;
   flex: 2;
+  gap: 2rem;
 }
 @media (max-width: 992px) {
   header .wrapper ul {
@@ -11115,7 +11126,6 @@ header .wrapper .contact-btn a {
 .hero .left .top h2, .hero .left .top .h2 {
   font-family: "Obitron", sans-serif;
   font-size: 3.5rem;
-  line-height: 1.5;
 }
 @media (max-width: 1400px) {
   .hero .left .top h2, .hero .left .top .h2 {
@@ -11246,9 +11256,9 @@ header .wrapper .contact-btn a {
   margin-bottom: 1rem;
 }
 #contact-form .form-container .visit-card .information li i {
-  color: var(--bg-color);
+  color: var(--pri);
   text-align: center;
-  background-color: var(--pri);
+  background-color: var(--bg-color);
   width: 40px;
   height: 40px;
   border-radius: 5px;
@@ -11257,12 +11267,13 @@ header .wrapper .contact-btn a {
   justify-content: center;
 }
 #contact-form .form-container .visit-card .information li span {
-  color: var(--bg-color);
+  color: var(--pri);
 }
 
 #activities {
   grid-template-areas: "heading heading" "netImg netText" "gwText gwImg" "kaoImg gwImg" "kaoImg kaoText" "kaoImg kaoText";
   gap: 3rem 2rem;
+  padding-bottom: 3rem;
   overflow-y: scroll;
 }
 #activities::-webkit-scrollbar {
@@ -11275,14 +11286,15 @@ header .wrapper .contact-btn a {
 }
 #activities h2, #activities .h2 {
   grid-area: heading;
-  font-size: 5rem;
+  font-size: 4rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
   text-transform: uppercase;
 }
 @media (max-width: 660px) {
   #activities h2, #activities .h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    letter-spacing: unset;
   }
 }
 #activities .image {
@@ -11296,6 +11308,11 @@ header .wrapper .contact-btn a {
 }
 #activities .image.img_kao {
   grid-area: kaoImg;
+}
+@media (max-width: 768px) {
+  #activities .image.img_kao img {
+    height: calc(100vh - 200px);
+  }
 }
 @media (max-width: 768px) {
   #activities .image {
@@ -11312,6 +11329,11 @@ header .wrapper .contact-btn a {
 }
 #activities .image img:hover {
   opacity: 1;
+}
+@media (max-width: 768px) {
+  #activities .desc:last-child {
+    padding-bottom: 3rem;
+  }
 }
 #activities .desc.img_netcompany {
   grid-area: netText;
@@ -11334,14 +11356,15 @@ header .wrapper .contact-btn a {
 }
 
 #certificate h2, #certificate .h2 {
-  font-size: 5rem;
+  font-size: 4rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
   text-transform: uppercase;
 }
 @media (max-width: 660px) {
   #certificate h2, #certificate .h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    letter-spacing: unset;
   }
 }
 @media (max-width: 992px) {
@@ -11463,14 +11486,15 @@ header .wrapper .contact-btn a {
   }
 }
 #eduexp h2, #eduexp .h2 {
-  font-size: 5rem;
+  font-size: 4rem;
   letter-spacing: 5px;
   text-shadow: 3px 5px 5px #ccc;
   text-transform: uppercase;
 }
 @media (max-width: 660px) {
   #eduexp h2, #eduexp .h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    letter-spacing: unset;
   }
 }
 #eduexp ul {
@@ -11504,7 +11528,7 @@ header .wrapper .contact-btn a {
   cursor: pointer;
   filter: grayscale(1);
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   #eduexp ul li img {
     width: 100% !important;
   }
@@ -11613,7 +11637,10 @@ header .wrapper .contact-btn a {
 }
 @media (max-width: 992px) {
   .toggle-theme-wrapper {
+    opacity: 0;
+    visibility: hidden;
     display: none;
+    transition: all 0.25s linear;
   }
 }
 .toggle-theme-wrapper label {
@@ -11645,6 +11672,30 @@ header .wrapper .contact-btn a {
   bottom: 4px;
   left: 4px;
   transition: all 0.25s linear;
+}
+
+#language {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  visibility: visible;
+}
+#language button {
+  width: fit-content;
+  padding: 0;
+  background-color: transparent;
+}
+@media (max-width: 992px) {
+  #language {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    transition: all 0.25s linear;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
