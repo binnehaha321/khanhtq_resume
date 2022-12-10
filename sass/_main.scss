@@ -26,6 +26,7 @@ $transition: all 0.25s linear;
 .active {
   color: $primary !important;
   position: relative;
+  width: fit-content;
 
   &::before {
     content: "";

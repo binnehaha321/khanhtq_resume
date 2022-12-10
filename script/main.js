@@ -7,9 +7,12 @@ import SIDEBAR from "./sidebar.js";
 import { SLIDERS, HANDLESLIDERS } from "./sliders.js";
 import TOGGLETHEME from "./toggleTheme.js";
 import TRUNCATE from "./truncate.js";
+import { social } from "./variables.js";
+import WELCOME from "./welcome.js";
 
 window.onload = () => {
   PREVENTDEFAULT();
+  WELCOME();
   NAVBAR();
   TOGGLETHEME();
   DISPLAYMEDIA();
@@ -19,7 +22,7 @@ window.onload = () => {
   CHANGE_LANGUAGES();
 
   const contact = document.querySelector(".contact");
-  const socialHTML = document.querySelector("#social").innerHTML;
+  const socialHTML = social.innerHTML;
 
   if (window.matchMedia("(max-width: 992px)").matches) {
     contact.innerHTML += socialHTML;

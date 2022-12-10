@@ -86,7 +86,7 @@ const LANGUAGES = {
         },
         {
           subtitle: "Phóng sự về UOG trên HTV7",
-          desc: "Tôi đã vinh dự được mời đến để làm một cuộc phóng sự về trường Đại học Greenwich Việt Nam, nơi tôi đang học (cơ sở Hồ Chí Minh). Thời gian học tập tại trường, tôi được trải nghiệm và gặt hái được nhiều kinh nghiệm qua những chuyến trao đổi học sinh, hoạt động ngoại khóa và những hôm thuyết trình về dự án của mình. Trước đây tôi từng là một người rất thiếu tự tin, nhưng qua từng năm học, tôi cảm nhận được rõ rệt sự thay đổi của bản thân đang tích cực hơn.",
+          desc: "Tôi đã vinh dự được mời đến để làm một cuộc phóng sự về trường Đại học Greenwich Việt Nam, nơi tôi đang học (cơ sở Hồ Chí Minh). Thời gian học tập tại trường, tôi đã trải nghiệm và gặt hái được nhiều kinh nghiệm qua những chuyến trao đổi học sinh, hoạt động ngoại khóa và những buổi thuyết trình về dự án của mình. Trước đây tôi từng là một người rất thiếu tự tin, nhưng qua từng năm học, tôi cảm nhận được rõ rệt sự thay đổi của bản thân đang dần tích cực hơn.",
           showMediaBtn: "Xem ngay!",
         },
         {

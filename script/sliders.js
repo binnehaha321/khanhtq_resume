@@ -1,4 +1,5 @@
 const slider = document.querySelector(".certificates");
+
 const SLIDERS = () => {
   const certificates = [
     {

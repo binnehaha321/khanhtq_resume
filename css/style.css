@@ -10791,6 +10791,7 @@ textarea.form-control-lg {
 .active {
   color: #fe5b02 !important;
   position: relative;
+  width: fit-content;
 }
 .active::before {
   content: "";
@@ -10882,6 +10883,8 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family);
+  position: relative;
+  cursor: none;
 }
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
@@ -10908,9 +10911,10 @@ body::-webkit-scrollbar {
   scroll-snap-align: start;
   position: relative;
 }
-@media (max-width: 768px) {
+@media (max-width: 660px) {
   .parent > div, .parent > section, .parent > footer {
     height: unset;
+    scroll-snap-align: unset;
   }
 }
 .parent > section#certificate {
@@ -10948,7 +10952,7 @@ textarea {
   height: 100%;
   width: 70%;
   max-width: 400px;
-  z-index: 999;
+  z-index: 11;
   transition: all 0.25s linear;
   background-color: var(--bg-color);
   box-shadow: 5px 5px 10px #ccc;
@@ -11009,15 +11013,20 @@ textarea {
   flex-direction: column;
   gap: 2rem;
 }
-#sidebar .body ul li a {
-  color: var(--text-color);
-  font-size: 1.5rem;
+#sidebar .body ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-#sidebar .body ul li a i {
-  width: 30px;
+#sidebar .body ul li i {
+  font-size: 20px;
   text-align: center;
-  margin-right: 0.5rem;
-  color: var(--pri);
+  color: inherit;
+  width: 25px;
+}
+#sidebar .body ul li a {
+  color: inherit;
+  font-size: 1.5rem;
 }
 #sidebar .bottom ul {
   display: flex;
@@ -11032,7 +11041,7 @@ textarea {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 11;
+  z-index: 3;
   width: 325px;
   max-width: 325px;
   background-color: var(--gray);
@@ -11074,11 +11083,11 @@ header .wrapper ul {
 header .wrapper ul li {
   white-space: nowrap;
 }
-header .wrapper ul li a {
-  color: var(--text-color);
-}
-header .wrapper ul li a i {
+header .wrapper ul li i {
   display: none !important;
+}
+header .wrapper ul li a {
+  color: inherit;
 }
 header .wrapper .bar {
   flex: 2;
@@ -11137,9 +11146,19 @@ header .wrapper .contact-btn a {
     font-size: 2.8rem;
   }
 }
-@media (max-width: 992px) {
+@media (max-width: 480px) {
   .hero .left .top h2, .hero .left .top .h2 {
     font-size: 2rem;
+  }
+}
+@media (min-height: 700px) {
+  .hero .left .bottom {
+    margin-bottom: auto;
+  }
+}
+@media (max-width: 375px) {
+  .hero .left .bottom .skills {
+    font-size: 90%;
   }
 }
 .hero .left .bottom .skills ul {
@@ -11210,7 +11229,7 @@ header .wrapper .contact-btn a {
 }
 #contact-form .wrapper {
   border-radius: 5px;
-  z-index: 4;
+  z-index: 5;
   height: 100vh;
   overflow-y: scroll;
 }
@@ -11227,6 +11246,7 @@ header .wrapper .contact-btn a {
 #contact-form.active {
   opacity: 1;
   visibility: visible;
+  width: 100%;
 }
 @media (max-width: 768px) {
   #contact-form .form-container {
@@ -11273,7 +11293,6 @@ header .wrapper .contact-btn a {
 #activities {
   grid-template-areas: "heading heading" "netImg netText" "gwText gwImg" "kaoImg gwImg" "kaoImg kaoText" "kaoImg kaoText";
   gap: 3rem 2rem;
-  padding-bottom: 3rem;
   overflow-y: scroll;
 }
 #activities::-webkit-scrollbar {
@@ -11310,11 +11329,6 @@ header .wrapper .contact-btn a {
   grid-area: kaoImg;
 }
 @media (max-width: 768px) {
-  #activities .image.img_kao img {
-    height: calc(100vh - 200px);
-  }
-}
-@media (max-width: 768px) {
   #activities .image {
     opacity: initial;
   }
@@ -11329,11 +11343,6 @@ header .wrapper .contact-btn a {
 }
 #activities .image img:hover {
   opacity: 1;
-}
-@media (max-width: 768px) {
-  #activities .desc:last-child {
-    padding-bottom: 3rem;
-  }
 }
 #activities .desc.img_netcompany {
   grid-area: netText;
@@ -11444,6 +11453,11 @@ header .wrapper .contact-btn a {
 @media (max-width: 992px) and (max-height: 350px) {
   #certificate .wrapper ul li:nth-child(4) img {
     height: 90%;
+  }
+}
+@media (max-width: 992px) and (min-height: 700px) {
+  #certificate .wrapper ul li:nth-child(4) img {
+    height: unset;
   }
 }
 @media (max-width: 768px) {
@@ -11615,9 +11629,11 @@ header .wrapper .contact-btn a {
   visibility: visible;
 }
 #media button {
-  width: fit-content;
+  position: absolute;
   top: 1rem;
   right: 1rem;
+  z-index: 2;
+  width: fit-content;
   font-size: 1.5rem;
 }
 @media (max-width: 768px) {
@@ -11631,7 +11647,7 @@ header .wrapper .contact-btn a {
   position: fixed;
   top: 50%;
   right: 5px;
-  z-index: 11;
+  z-index: 4;
   width: 5.5rem;
   height: 2.5rem;
 }
@@ -11678,7 +11694,7 @@ header .wrapper .contact-btn a {
   position: fixed;
   top: 50%;
   left: 0;
-  z-index: 12;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   opacity: 1;
@@ -11690,11 +11706,73 @@ header .wrapper .contact-btn a {
   background-color: transparent;
 }
 @media (max-width: 992px) {
+  #language button img {
+    width: 80px;
+    margin-right: 1rem;
+  }
+}
+@media (max-width: 992px) {
   #language {
     opacity: 0;
     visibility: hidden;
     display: none;
     transition: all 0.25s linear;
+    left: initial;
+    top: 30rem;
+  }
+}
+
+.welcome {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: #241f21;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.25s linear;
+}
+.welcome .typed-animation {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.welcome .typed-out {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.25rem solid #f8f9fa;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #f8f9fa;
+  animation: typing 8s steps(40) infinite, blinking 1s infinite;
+}
+@media (max-width: 768px) {
+  .welcome .typed-out {
+    font-size: 2.8rem;
+  }
+}
+@media (max-width: 480px) {
+  .welcome .typed-out {
+    font-size: 1.8rem;
+  }
+}
+@keyframes typing {
+  0%, 100% {
+    width: 0;
+  }
+  50%, 90% {
+    width: 100%;
+  }
+}
+@keyframes blinking {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fff;
   }
 }
 

@@ -9,7 +9,8 @@ $desktop-width: 1024px;
 $xl-desktop-width: 1200px;
 $tv-width: 1400px;
 
-$height-350: 350px;
+$maxHeight-350: 350px;
+$minHeight-700: 700px;
 
 @mixin mini {
   @media (max-width: #{$mini-width}) {
@@ -59,8 +60,14 @@ $height-350: 350px;
   }
 }
 
-@mixin height350 {
-  @media (max-height: #{$height-350}) {
+@mixin maxHeight350 {
+  @media (max-height: #{$maxHeight-350}) {
+    @content;
+  }
+}
+
+@mixin minHeight700 {
+  @media (min-height: #{$minHeight-700}) {
     @content;
   }
 }

@@ -1,4 +1,4 @@
-import { activityTitle } from "./variables.js";
+import { body, activityTitle } from "./variables.js";
 
 const DISPLAYMEDIA = () => {
   const medias = [
@@ -17,9 +17,10 @@ const DISPLAYMEDIA = () => {
   ];
 
   const media = document.querySelector("#media");
-  const iframe = document.querySelector("#media iframe");
-  const img = document.querySelector("#media img");
-  const caption = document.querySelector("#media figcaption");
+  const iframe = media.querySelector("#media iframe");
+  const img = media.querySelector("#media img");
+  const caption = media.querySelector("#media figcaption");
+  const buttonClose = media.querySelector(".close-media");
 
   const showMedia = (src, title, type) => {
     media.classList.add("active");
@@ -28,7 +29,7 @@ const DISPLAYMEDIA = () => {
       iframe.src = src;
       iframe.style.cssText = `
         width: 80vw;
-        height: 90vh;
+        height: 50vh;
         visibility: visible;
       `;
     } else {
@@ -40,8 +41,8 @@ const DISPLAYMEDIA = () => {
       `;
     }
     caption.innerText = `Media: ${title}`;
-    document.body.append(media);
-    document.body.style.overflowY = "hidden";
+    body.append(media);
+    body.style.overflowY = "hidden";
   };
 
   const resetAttribute = (media) => {
@@ -53,17 +54,17 @@ const DISPLAYMEDIA = () => {
   };
 
   const closeMedia = () => {
-    document.body.style.overflowY = "scroll";
+    body.style.overflowY = "scroll";
     media.classList.remove("active");
     resetAttribute(iframe);
     resetAttribute(img);
-    document.body.removeChild(media);
+    body.removeChild(media);
   };
 
   let isMediaShown = false;
   // show media
   const showMediaButtons = [...document.querySelectorAll(".desc > button")];
-  showMediaButtons.map((btn, i) => {
+  showMediaButtons.forEach((btn, i) => {
     btn.onclick = () => {
       showMedia(medias[i].src, activityTitle[i].textContent, medias[i].type);
       isMediaShown = true;
@@ -71,13 +72,13 @@ const DISPLAYMEDIA = () => {
   });
 
   // close media
-  document.querySelector("#media button").onclick = () => {
+  buttonClose.onclick = () => {
     closeMedia();
     isMediaShown = false;
   };
 
   // ESC to close media
-  document.body.onkeydown = (e) => {
+  body.onkeydown = (e) => {
     isMediaShown && e.key === "Escape" ? closeMedia() : null;
     isMediaShown = false;
   };

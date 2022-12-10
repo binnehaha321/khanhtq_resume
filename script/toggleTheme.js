@@ -1,5 +1,6 @@
+import { html } from "./variables.js";
+
 const TOGGLETHEME = () => {
-  const html = document.querySelector("html");
   const toggleThemeBtn = document.querySelector(".toggle-theme-wrapper input");
 
   toggleThemeBtn.onclick = () => {

@@ -4,6 +4,9 @@ let $$ = document.querySelectorAll.bind(document);
 // html
 const html = $("html");
 
+// body
+const body = $("body");
+
 // navbar
 let navItems = [...$$("header ul li a")];
 
@@ -43,8 +46,12 @@ let msg = $("#contact-form form textarea");
 let cancelBtn = $("#contact-form form .cancel");
 let submitBtn = $("#contact-form form .submit");
 
+// social media
+let social = $("#social");
+
 export {
   html,
+  body,
   navItems,
   resume,
   state,
@@ -68,4 +75,5 @@ export {
   msg,
   cancelBtn,
   submitBtn,
+  social,
 };

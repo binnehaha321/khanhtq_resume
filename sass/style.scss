@@ -59,7 +59,9 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family);
+  position: relative;
   @include hideScrollBar();
+  cursor: none;
 
   @include xlTablet() {
     height: unset;
@@ -81,8 +83,9 @@ body {
     scroll-snap-align: start;
     position: relative;
 
-    @include tablet() {
+    @include xlMobile() {
       height: unset;
+      scroll-snap-align: unset;
     }
   }
 
@@ -126,7 +129,7 @@ textarea {
   height: 100%;
   width: 70%;
   max-width: 400px;
-  z-index: 999;
+  z-index: 11;
   transition: $transition;
   background-color: var(--bg-color);
   box-shadow: 5px 5px 10px #ccc;
@@ -139,7 +142,7 @@ textarea {
     width: 100%;
   }
 
-  @include height350() {
+  @include maxHeight350() {
     overflow-y: scroll;
   }
 
@@ -185,16 +188,20 @@ textarea {
       gap: 2rem;
 
       li {
-        a {
-          color: var(--text-color);
-          font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
 
-          i {
-            width: 30px;
-            text-align: center;
-            margin-right: 0.5rem;
-            color: var(--pri);
-          }
+        i {
+          font-size: 20px;
+          text-align: center;
+          color: inherit;
+          width: 25px;
+        }
+
+        a {
+          color: inherit;
+          font-size: 1.5rem;
         }
       }
     }
@@ -217,7 +224,7 @@ textarea {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 11;
+  z-index: 3;
   width: 325px;
   max-width: 325px;
   background-color: var(--gray);
@@ -254,12 +261,12 @@ header {
       li {
         white-space: nowrap;
 
-        a {
-          color: var(--text-color);
+        i {
+          display: none !important;
+        }
 
-          i {
-            display: none !important;
-          }
+        a {
+          color: inherit;
         }
       }
     }
@@ -321,14 +328,22 @@ header {
         @include xlDesktop {
           font-size: 2.8rem;
         }
-        @include xlTablet {
+        @include mobile {
           font-size: 2rem;
         }
       }
     }
 
     .bottom {
+      @include minHeight700 {
+        margin-bottom: auto;
+      }
+
       .skills {
+        @include mini() {
+          font-size: 90%;
+        }
+
         ul {
           display: flex;
           flex-wrap: wrap;
@@ -396,7 +411,7 @@ header {
   }
   .wrapper {
     border-radius: 5px;
-    z-index: 4;
+    z-index: 5;
     height: 100vh;
     overflow-y: scroll;
     @include hideScrollBar();
@@ -413,6 +428,7 @@ header {
 
   &.active {
     @include modalActive();
+    width: 100%;
   }
 
   .form-container {
@@ -477,7 +493,6 @@ header {
     "kaoImg kaoText"
     "kaoImg kaoText";
   gap: 3rem 2rem;
-  padding-bottom: 3rem;
   overflow-y: scroll;
   @include hideScrollBar();
 
@@ -506,12 +521,6 @@ header {
     }
     &.img_kao {
       grid-area: kaoImg;
-
-      img {
-        @include tablet() {
-          height: calc(100vh - 200px);
-        }
-      }
     }
 
     opacity: 1;
@@ -535,12 +544,6 @@ header {
   }
 
   .desc {
-    @include tablet() {
-      &:last-child {
-        padding-bottom: 3rem;
-      }
-    }
-
     &.img_netcompany {
       grid-area: netText;
     }
@@ -641,8 +644,11 @@ header {
             img {
               height: 70%;
 
-              @include height350 {
+              @include maxHeight350 {
                 height: 90%;
+              }
+              @include minHeight700 {
+                height: unset;
               }
             }
           }
@@ -799,9 +805,11 @@ header {
   }
 
   button {
-    width: fit-content;
+    position: absolute;
     top: 1rem;
     right: 1rem;
+    z-index: 2;
+    width: fit-content;
     font-size: 1.5rem;
 
     @include tablet() {
@@ -822,7 +830,7 @@ header {
   position: fixed;
   top: 50%;
   right: 5px;
-  z-index: 11;
+  z-index: 4;
   width: 5.5rem;
   height: 2.5rem;
 
@@ -869,21 +877,89 @@ header {
   position: fixed;
   top: 50%;
   left: 0;
-  z-index: 12;
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  // display: none;
   @include modalActive();
 
   button {
     width: fit-content;
     padding: 0;
     background-color: transparent;
+
+    @include xlTablet() {
+      img {
+        width: 80px;
+        margin-right: 1rem;
+      }
+    }
   }
 
   @include xlTablet() {
     @include modalDeactive();
     display: none;
     transition: $transition;
+    left: initial;
+    top: 30rem;
+  }
+}
+
+// welcome
+.welcome {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: $info;
+  width: 100%;
+  height: 100%;
+  @include modalActive();
+  transition: $transition;
+
+  .typed-animation {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .typed-out {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.25rem solid $light;
+    font-size: 4rem;
+    font-weight: 700;
+    color: $light;
+    animation: typing 8s steps(40) infinite, blinking 1s infinite;
+
+    @include tablet() {
+      font-size: 2.8rem;
+    }
+    @include mobile() {
+      font-size: 1.8rem;
+    }
+  }
+
+  @keyframes typing {
+    0%,
+    100% {
+      width: 0;
+    }
+
+    50%,
+    90% {
+      width: 100%;
+    }
+  }
+
+  @keyframes blinking {
+    0%,
+    100% {
+      border-color: transparent;
+    }
+
+    50% {
+      border-color: #fff;
+    }
   }
 }
