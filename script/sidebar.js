@@ -14,22 +14,6 @@ const SIDEBAR = () => {
   sidebarBody.append(toggleLanguage);
   sidebarFooter.append(social);
 
-  // Style toggle theme btn
-  toggleThemeBtn.style.cssText = `
-    display: unset;
-    left: 1rem;
-    top: 25rem;
-    opacity: unset;
-    visibility: initial;
-  `;
-
-  // Style toggle language btn
-  toggleLanguage.style.cssText = `
-    display: unset;
-    opacity: unset;
-    visibility: initial;
-  `;
-
   // Open sidebar
   if (bar) {
     bar.onclick = () => {

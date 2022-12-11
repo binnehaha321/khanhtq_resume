@@ -10910,6 +10910,7 @@ body::-webkit-scrollbar {
   height: calc(100vh - (var(--sidebar-height)));
   scroll-snap-align: start;
   position: relative;
+  overflow-y: auto;
 }
 @media (max-width: 660px) {
   .parent > div, .parent > section, .parent > footer {
@@ -10967,7 +10968,7 @@ textarea {
     width: 100%;
   }
 }
-@media (max-height: 350px) {
+@media (max-height: 430px) {
   #sidebar {
     overflow-y: scroll;
   }
@@ -11450,14 +11451,14 @@ header .wrapper .contact-btn a {
     height: 70%;
   }
 }
-@media (max-width: 992px) and (max-height: 350px) {
+@media (max-width: 992px) and (max-height: 430px) {
   #certificate .wrapper ul li:nth-child(4) img {
     height: 90%;
   }
 }
 @media (max-width: 992px) and (min-height: 700px) {
   #certificate .wrapper ul li:nth-child(4) img {
-    height: unset;
+    height: 80%;
   }
 }
 @media (max-width: 768px) {
@@ -11596,6 +11597,8 @@ header .wrapper .contact-btn a {
 }
 
 #media {
+  width: 100%;
+  margin: auto;
   position: fixed;
   inset: 0;
   z-index: 12;
@@ -11612,6 +11615,11 @@ header .wrapper .contact-btn a {
 #media::-webkit-scrollbar {
   display: none;
 }
+#media iframe,
+#media img {
+  width: 90vw;
+  height: 90vh;
+}
 @media (max-width: 768px) {
   #media iframe,
   #media img {
@@ -11619,9 +11627,13 @@ header .wrapper .contact-btn a {
     min-width: 100%;
   }
 }
+#media img {
+  width: 100%;
+  object-fit: cover;
+}
 @media (max-width: 768px) {
   #media img {
-    object-fit: contain !important;
+    object-fit: contain;
   }
 }
 #media.active {
@@ -11644,7 +11656,7 @@ header .wrapper .contact-btn a {
 }
 
 .toggle-theme-wrapper {
-  position: fixed;
+  position: absolute;
   top: 50%;
   right: 5px;
   z-index: 4;
@@ -11653,10 +11665,14 @@ header .wrapper .contact-btn a {
 }
 @media (max-width: 992px) {
   .toggle-theme-wrapper {
-    opacity: 0;
-    visibility: hidden;
-    display: none;
-    transition: all 0.25s linear;
+    top: 25rem;
+    left: 1rem;
+  }
+}
+@media (max-width: 992px) and (max-height: 430px) {
+  .toggle-theme-wrapper {
+    top: 8rem;
+    left: 18rem;
   }
 }
 .toggle-theme-wrapper label {
@@ -11691,7 +11707,7 @@ header .wrapper .contact-btn a {
 }
 
 #language {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 0;
   z-index: 3;
@@ -11711,14 +11727,23 @@ header .wrapper .contact-btn a {
     margin-right: 1rem;
   }
 }
+@media (max-width: 992px) and (max-height: 430px) {
+  #language button img {
+    margin: auto;
+  }
+}
 @media (max-width: 992px) {
   #language {
-    opacity: 0;
-    visibility: hidden;
-    display: none;
-    transition: all 0.25s linear;
     left: initial;
     top: 30rem;
+    flex-direction: row;
+  }
+}
+@media (max-width: 992px) and (max-height: 430px) {
+  #language {
+    top: 12rem;
+    left: 18rem;
+    flex-direction: column;
   }
 }
 

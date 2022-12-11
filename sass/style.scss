@@ -82,6 +82,7 @@ body {
     height: calc(100vh - (var(--sidebar-height)));
     scroll-snap-align: start;
     position: relative;
+    overflow-y: auto;
 
     @include xlMobile() {
       height: unset;
@@ -142,7 +143,7 @@ textarea {
     width: 100%;
   }
 
-  @include maxHeight350() {
+  @include maxHeight430() {
     overflow-y: scroll;
   }
 
@@ -644,11 +645,11 @@ header {
             img {
               height: 70%;
 
-              @include maxHeight350 {
+              @include maxHeight430 {
                 height: 90%;
               }
               @include minHeight700 {
-                height: unset;
+                height: 80%;
               }
             }
           }
@@ -783,11 +784,16 @@ header {
 
 // MEDIA popup
 #media {
+  width: 100%;
+  margin: auto;
+
   @include modal();
   flex-direction: column;
 
   iframe,
   img {
+    width: 90vw;
+    height: 90vh;
     @include tablet() {
       width: 100vw !important;
       min-width: 100%;
@@ -795,8 +801,11 @@ header {
   }
 
   img {
+    width: 100%;
+    object-fit: cover;
+    
     @include tablet() {
-      object-fit: contain !important;
+      object-fit: contain;
     }
   }
 
@@ -821,18 +830,22 @@ header {
 
 // toggle-theme
 .toggle-theme-wrapper {
-  @include xlTablet() {
-    @include modalDeactive();
-    display: none;
-    transition: $transition;
-  }
-
-  position: fixed;
+  position: absolute;
   top: 50%;
   right: 5px;
   z-index: 4;
   width: 5.5rem;
   height: 2.5rem;
+
+  @include xlTablet() {
+    top: 25rem;
+    left: 1rem;
+
+    @include maxHeight430() {
+      top: 8rem;
+      left: 18rem;
+    }
+  }
 
   label {
     display: block;
@@ -874,7 +887,7 @@ header {
 
 // Language
 #language {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 0;
   z-index: 3;
@@ -891,16 +904,24 @@ header {
       img {
         width: 80px;
         margin-right: 1rem;
+
+        @include maxHeight430() {
+          margin: auto;
+        }
       }
     }
   }
 
   @include xlTablet() {
-    @include modalDeactive();
-    display: none;
-    transition: $transition;
     left: initial;
     top: 30rem;
+    flex-direction: row;
+
+    @include maxHeight430() {
+      top: 12rem;
+      left: 18rem;
+      flex-direction: column;
+    }
   }
 }
 

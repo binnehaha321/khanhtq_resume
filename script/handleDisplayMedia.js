@@ -28,17 +28,14 @@ const DISPLAYMEDIA = () => {
       resetAttribute(img);
       iframe.src = src;
       iframe.style.cssText = `
-        width: 80vw;
-        height: 50vh;
         visibility: visible;
       `;
-    } else {
+    } else if (type === "image") {
       resetAttribute(iframe);
       img.src = src;
       img.style.cssText = `
-        width: 60%;
-        object-fit: cover;
-      `;
+        height: initial;
+      `
     }
     caption.innerText = `Media: ${title}`;
     body.append(media);

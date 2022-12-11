@@ -5,7 +5,20 @@ const NAVBAR = () => {
 
   // Sticky header when scroll down
   parent.onscroll = () => {
-    header.classList.toggle("stickyTop", parent.scrollTop > 0);
+    let scrollPosition = parent.scrollTop;
+    header.classList.toggle("stickyTop", scrollPosition > 0);
+
+    if (window.matchMedia("(min-width: 992)").matches) {
+      if (scrollPosition >= 0 && scrollPosition < 673) {
+        handleActive(menu.querySelector("li:first-child"));
+      } else if (scrollPosition >= 673 && scrollPosition < 1347) {
+        handleActive(menu.querySelector("li:nth-child(2)"));
+      } else if (scrollPosition >= 1347 && scrollPosition < 2020) {
+        handleActive(menu.querySelector("li:nth-child(3)"));
+      } else if (scrollPosition >= 2020) {
+        handleActive(menu.querySelector("li:last-child"));
+      }
+    }
   };
 
   const handleActive = (el) => {
